@@ -295,13 +295,6 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
 .js .rv{transform:translateY(28px);transition:transform .9s var(--ease);transition-delay:var(--d,0s)}
 .js .rv.in{transform:none}
 
-/* botón de movimiento: pausa para todos; en equipos con "reducir movimiento" el movimiento arranca apagado y se activa desde acá */
-.motion{display:none;position:fixed;left:var(--gut);bottom:calc(1rem + env(safe-area-inset-bottom,0px));z-index:60;align-items:center;gap:.6rem;padding:.7rem 1rem;border:1px solid var(--line);background:rgb(10 9 12 / .88);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:var(--fg);font:600 .68rem/1 var(--body);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:border-color .3s}
-.js .motion{display:inline-flex}
-.motion:hover{border-color:var(--wine-hi)}
-.motion i{width:.55rem;height:.55rem;border-radius:50%;background:var(--wine-hi)}
-.motion[aria-pressed=false] i{background:transparent;border:1.5px solid var(--wine-hi)}
-.paused *,.paused *::before,.paused *::after{animation-play-state:paused!important}
 @media(prefers-reduced-motion:reduce){
   :root:not(.mo) *,:root:not(.mo) *::before,:root:not(.mo) *::after{animation:none!important;transition:none!important}
   .js:not(.mo) .rv{transform:none}
@@ -680,8 +673,6 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
   </div>
 </footer>
 
-<button class="motion" id="motion" type="button" aria-pressed="true"><i aria-hidden="true"></i><span>Pausar movimiento</span></button>
-
 <script>
 (function(){
   var d=document, root=d.documentElement;
@@ -970,21 +961,8 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
   }
   d.addEventListener('visibilitychange',function(){ if(!d.hidden) eStart(); });
 
-  /* botón de movimiento */
   function motionOK(){ return moving(); }
-  var mb=$('#motion'), mt=$('span',mb);
   function moving(){ return reduce?root.classList.contains('mo'):!root.classList.contains('paused'); }
-  function paintMotion(){
-    var on=moving();
-    mb.setAttribute('aria-pressed',on?'true':'false');
-    mt.textContent=on?'Pausar movimiento':'Activar movimiento';
-  }
-  mb.addEventListener('click',function(){
-    if(moving()){ root.classList.remove('mo'); root.classList.add('paused'); }
-    else { root.classList.remove('paused'); root.classList.add('mo'); start(); eStart(); }
-    paintMotion();
-  });
-  paintMotion();
   start();
 })();
 </script>
