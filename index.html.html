@@ -183,13 +183,14 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
 .loop .track{animation:none}
 .loop.on .track{animation:slide 70s linear infinite}
 .grid-t{display:flex;gap:1rem;padding-right:1rem}
-.grid-t>li{flex:none;width:clamp(270px,36vw,440px)}
-.tile{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;text-decoration:none;border:1px solid var(--line);background:var(--ink-2);transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .3s var(--ease),border-color .3s}
+.grid-t>li{flex:none;width:clamp(200px,20vw,290px)}
+.tile{position:relative;display:block;aspect-ratio:9/16;overflow:hidden;text-decoration:none;border:1px solid var(--line);background:var(--ink-2);transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .3s var(--ease),border-color .3s}
 .tile:hover{border-color:var(--wine-hi)}
 .tile svg.art{position:absolute;inset:0;width:100%;height:100%;transition:transform .8s var(--ease)}
 .tile:hover svg.art{transform:scale(1.05)}
-.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgb(10 9 12 / .92));pointer-events:none}
+.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgb(10 9 12 / .55) 72%,rgb(10 9 12 / .9));pointer-events:none}
 .cap{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;padding:1.25rem}
+.cap{text-shadow:0 1px 14px rgb(0 0 0 / .7)}
 .cap h3{font-size:1.15rem;font-weight:500}
 .cap small{display:block;color:var(--fg-dim);font-size:.82rem;margin-top:.15rem}
 .cap .go{flex:none;display:grid;place-items:center;width:2.5rem;height:2.5rem;border:1px solid var(--fg);transition:background .3s,border-color .3s,transform .4s var(--ease)}
@@ -213,7 +214,7 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
 .about p{color:rgb(242 237 230 / .8);max-width:56ch}
 .about p+p{margin-top:1rem}
 .who{margin-top:auto;padding-top:2rem}
-.sign{position:relative;z-index:2;margin-top:-1.5rem;padding-left:1.25rem;display:flex;flex-direction:column;gap:.1rem;text-shadow:0 2px 16px rgb(0 0 0 / .65)}
+.sign{position:relative;z-index:2;margin-top:-.6rem;padding-left:1.25rem;display:flex;flex-direction:column;gap:.1rem;text-shadow:0 2px 16px rgb(0 0 0 / .65)}
 .sign span:first-child{font:400 clamp(2rem,4vw,2.6rem)/1 var(--script);color:var(--fg)}
 .sign span:last-child{font-size:.7rem;letter-spacing:.14em;line-height:1.6;max-width:46ch;text-transform:uppercase;color:var(--fg-dim)}
 .about h3.sub{font:600 .7rem/1.65 var(--body);letter-spacing:.26em;text-transform:uppercase;color:var(--fg-dim);margin:0 0 .75rem}
@@ -238,15 +239,39 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
 /* ---------- compromiso ---------- */
 .commit{padding-block:clamp(4rem,9vw,7.5rem);background:var(--ink-2)}
 .vals{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;margin-top:clamp(2rem,5vw,3.25rem);background:var(--line);border:1px solid var(--line)}
-.val{background:var(--ink-2);padding:clamp(1.4rem,2.5vw,2rem);display:flex;flex-direction:column;gap:1rem;min-width:0;transition:background .4s}
-.val:hover{background:var(--ink-3)}
-.val .ico{width:2.2rem;height:2.2rem;color:var(--wine-hi);stroke-width:1.3;transition:transform .5s var(--ease)}
-.val:hover .ico{transform:translateY(-4px) rotate(-6deg)}
+.val{position:relative;overflow:hidden;isolation:isolate;background:var(--ink-2);padding:clamp(1.4rem,2.5vw,2rem);display:flex;flex-direction:column;gap:1rem;min-width:0;transition:background .4s}
+.vals{perspective:1400px}
+.val .ico{width:2.2rem;height:2.2rem;color:var(--wine-hi);stroke-width:1.3}
+.val::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--wine-hi);transform:scaleX(0);transform-origin:left}
+.js .val.rv{opacity:0;transform:rotateX(-80deg) translateY(30px);transform-origin:50% 0;transition:none}
+.js .val.rv.in{opacity:1;transform:none;animation:valFlip 1.1s var(--ease) var(--d,0s) both}
+.js .val.in::after{animation:valLine 1.2s var(--ease) calc(var(--d,0s) + .7s) both}
+.js .val.in>*{animation:valUp .8s var(--ease) calc(var(--d,0s) + .45s) both}
+.js .val.in>h3{animation-delay:calc(var(--d,0s) + .55s)}
+.js .val.in>p{animation-delay:calc(var(--d,0s) + .65s)}
+@media(prefers-reduced-motion:reduce){.js:not(.mo) .val.rv{transform:none}.js:not(.mo) .val,.js:not(.mo) .val::after,.js:not(.mo) .val>*{animation:none!important}}
+@keyframes valFlip{0%{opacity:0;transform:rotateX(-80deg) translateY(30px)}100%{opacity:1;transform:none}}
+@keyframes valLine{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes valUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 .val p{color:var(--fg-dim);font-size:.95rem}
 .commit-cta{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-top:2.5rem}
 .commit-cta p{font:500 clamp(1.3rem,2.6vw,1.8rem)/1.2 var(--display);letter-spacing:-.02em;max-width:26ch}
 @media(max-width:1100px){.vals{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.vals{grid-template-columns:minmax(0,1fr)}}
+
+
+/* ---------- celular: animaciones más livianas y suaves ---------- */
+@media(max-width:768px),(pointer:coarse){
+  .hdr.solid,.hdr.open{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgb(10 9 12 / .95)}
+  .cl{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgb(10 9 12 / .6)}
+  :root.js .rv{transform:translateY(16px);transition:transform .7s cubic-bezier(.22,.61,.36,1),opacity .7s;transition-delay:var(--d,0s)}
+  :root.js .vals{perspective:none}
+  :root.js .val.rv{transform:translateY(16px);transform-origin:50% 50%}
+  :root.js .val.rv.in{animation:valUp .8s cubic-bezier(.22,.61,.36,1) var(--d,0s) both}
+  :root.js .val.in>*{animation:none}
+  #eye .vn,#eye .echo,.big::after,.scan,.ph{animation:none}
+  .tile{transform:none!important}
+}
 
 /* ---------- preguntas frecuentes ---------- */
 .faq{padding-block:clamp(4rem,9vw,7.5rem)}
@@ -498,7 +523,6 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
     <ul class="grid-t">
       <li class="rv">
         <a class="tile" href="#servicios" data-tab="0">
-          <span class="tag">Muestra</span>
           <svg class="art" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             <defs><linearGradient id="gA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5a0d20"/><stop offset="1" stop-color="#0A090C"/></linearGradient></defs>
             <rect width="400" height="300" fill="url(#gA)"/>
@@ -512,7 +536,6 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
       </li>
       <li class="rv" style="--d:.08s">
         <a class="tile" href="#servicios" data-tab="2">
-          <span class="tag">Muestra</span>
           <svg class="art" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             <defs><radialGradient id="gB" cx="50%" cy="50%" r="60%"><stop offset="0" stop-color="#3E0914"/><stop offset="1" stop-color="#0A090C"/></radialGradient><radialGradient id="gB2" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#E2485F"/><stop offset="1" stop-color="#8C1530"/></radialGradient></defs>
             <rect width="400" height="300" fill="url(#gB)"/>
@@ -525,7 +548,6 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
       </li>
       <li class="rv">
         <a class="tile" href="#servicios" data-tab="1">
-          <span class="tag">Muestra</span>
           <svg class="art" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             <rect width="400" height="300" fill="#16121a"/>
             <circle cx="320" cy="60" r="90" fill="#8C1530" fill-opacity=".35"/>
@@ -538,7 +560,6 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
       </li>
       <li class="rv" style="--d:.08s">
         <a class="tile" href="#servicios" data-tab="4">
-          <span class="tag">Muestra</span>
           <svg class="art" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             <rect width="400" height="300" fill="#0d0c12"/>
             <g stroke="#EFE9E1" stroke-opacity=".06"><path d="M0 30h400M0 60h400M0 90h400M0 120h400M0 150h400M0 180h400M0 210h400M0 240h400M0 270h400M30 0v300M60 0v300M90 0v300M120 0v300M150 0v300M180 0v300M210 0v300M240 0v300M270 0v300M300 0v300M330 0v300M360 0v300"/></g>
@@ -682,6 +703,7 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
   root.classList.add('js');
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine=matchMedia('(pointer: fine)').matches;
+  var lite=!fine||innerWidth<768, lastF=0, lastE=0;
   function $(s,c){return (c||d).querySelector(s)}
   function $$(s,c){return Array.prototype.slice.call((c||d).querySelectorAll(s))}
   function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
@@ -832,7 +854,7 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
   var hiH=cs.getPropertyValue('--hi-rgb').trim().split(/\s+/).join(',');
   var spx=.5,spy=.45;
   function size(){
-    dpr=Math.min(window.devicePixelRatio||1,1.25);
+    dpr=lite?1:Math.min(window.devicePixelRatio||1,1.25);
     var r=hero.getBoundingClientRect(); W=r.width; H=r.height;
     cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr);
     ctx.setTransform(dpr,0,0,dpr,0,0);
@@ -853,12 +875,19 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
     /* cruces de registro */
     var step=W<600?56:72;
     ctx.lineWidth=1;
+    var bk=[[],[],[],[],[],[]];
     for(i=step/2;i<W;i+=step){
       for(j=step/2;j<H;j+=step){
-        var k=clamp(1-Math.hypot(i-px,j-py)/300,0,1), s=3+k*4;
-        ctx.strokeStyle='rgba('+cream+','+(.07+k*.4).toFixed(3)+')';
-        ctx.beginPath(); ctx.moveTo(i-s,j); ctx.lineTo(i+s,j); ctx.moveTo(i,j-s); ctx.lineTo(i,j+s); ctx.stroke();
+        var k=clamp(1-Math.hypot(i-px,j-py)/300,0,1), q=Math.min(5,(k*5.99)|0);
+        bk[q].push(i,j,3+k*4);
       }
+    }
+    for(var b=0;b<6;b++){
+      var a=bk[b]; if(!a.length) continue;
+      ctx.strokeStyle='rgba('+cream+','+(.07+(b/5)*.4).toFixed(3)+')';
+      ctx.beginPath();
+      for(var n=0;n<a.length;n+=3){ ctx.moveTo(a[n]-a[n+2],a[n+1]); ctx.lineTo(a[n]+a[n+2],a[n+1]); ctx.moveTo(a[n],a[n+1]-a[n+2]); ctx.lineTo(a[n],a[n+1]+a[n+2]); }
+      ctx.stroke();
     }
     /* guías de diseño y visor */
     ctx.strokeStyle='rgba('+hiH+',.22)';
@@ -881,6 +910,8 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
   }
   function frame(t){
     if(!visible||d.hidden||!motionOK()){running=false;return}
+    if(lite&&t-lastF<33){requestAnimationFrame(frame);return}
+    lastF=t;
     var nx,ny;
     if(hasPtr && t-lastMove<3000){
       var r=eye.getBoundingClientRect();
@@ -916,7 +947,7 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
     {c:hiRgb,a:.22,r:.3,fx:.15,fy:.75,ax:.12,ay:.15,s:.00036,p:5}
   ];
   function aSize(){
-    var r=ec.getBoundingClientRect(), k=.5;
+    var r=ec.getBoundingClientRect(), k=lite?.35:.5;
     AW=Math.max(2,Math.round(r.width*k)); AH=Math.max(2,Math.round(r.height*k));
     ec.width=AW; ec.height=AH;
   }
@@ -954,6 +985,8 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
   }
   function eFrame(t){
     if(!eVis||d.hidden||!motionOK()){eRun=false;return}
+    if(lite&&t-lastE<33){requestAnimationFrame(eFrame);return}
+    lastE=t;
     aDraw(t); requestAnimationFrame(eFrame);
   }
   function eStart(){ if(!eRun&&eVis&&motionOK()){eRun=true;requestAnimationFrame(eFrame)} }
