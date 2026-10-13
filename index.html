@@ -1,9 +1,9 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>VER Studio</title>
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Manrope:wght@400;500;600&family=Mea+Culpa&display=swap">
@@ -188,11 +188,12 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
 .grid-t>li{flex:none;width:clamp(200px,20vw,290px)}
 .tile{position:relative;display:block;aspect-ratio:9/16;overflow:hidden;text-decoration:none;border:1px solid var(--line);background:var(--ink-2);transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .3s var(--ease),border-color .3s}
 .tile:hover{border-color:var(--wine-hi)}
-.tile video.art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff}
+.tile{isolation:isolate}
+.tile video.art{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;background:#fff}
 .tile svg.art{position:absolute;inset:0;width:100%;height:100%;transition:transform .8s var(--ease)}
 .tile:hover svg.art{transform:scale(1.05)}
-.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgb(10 9 12 / .55) 72%,rgb(10 9 12 / .9));pointer-events:none}
-.cap{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;padding:1.25rem}
+.tile::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,transparent 55%,rgb(10 9 12 / .55) 72%,rgb(10 9 12 / .9));pointer-events:none}
+.cap{position:absolute;left:0;right:0;bottom:0;z-index:3;-webkit-transform:translateZ(0);transform:translateZ(0);display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;padding:1.25rem}
 .cap{text-shadow:0 1px 14px rgb(0 0 0 / .7)}
 .cap h3{font-size:1.15rem;font-weight:500}
 .cap small{display:block;color:var(--fg-dim);font-size:.82rem;margin-top:.15rem}
@@ -534,25 +535,25 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
     <ul class="grid-t">
       <li class="rv">
         <a class="tile" href="#servicios" data-tab="0">
-          <video class="art vid" muted loop playsinline preload="none" poster="media/branding/branding.jpg" aria-hidden="true" tabindex="-1"><source src="media/branding/branding.mp4" type="video/mp4"></video>
+          <video class="art vid" muted loop playsinline preload="none" poster="media/branding/branding.jpg?v=2" aria-hidden="true" tabindex="-1"><source src="media/branding/branding.mp4?v=2" type="video/mp4"></video>
           <span class="cap"><span><h3>Branding · Identidad visual</h3><small>Logotipo, paleta y manual de marca</small></span><span class="go"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
         </a>
       </li>
       <li class="rv" style="--d:.08s">
         <a class="tile" href="#servicios" data-tab="2">
-          <video class="art vid" muted loop playsinline preload="none" poster="media/motion/motion-graphics.jpg" aria-hidden="true" tabindex="-1"><source src="media/motion/motion-graphics.mp4" type="video/mp4"></video>
+          <video class="art vid" muted loop playsinline preload="none" poster="media/motion/motion-graphics.jpg?v=2" aria-hidden="true" tabindex="-1"><source src="media/motion/motion-graphics.mp4?v=2" type="video/mp4"></video>
           <span class="cap"><span><h3>Motion graphics · Video promocional</h3><small>Animación 2D y transiciones</small></span><span class="go"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
         </a>
       </li>
       <li class="rv">
         <a class="tile" href="#servicios" data-tab="1">
-          <video class="art vid" muted loop playsinline preload="none" poster="media/social/social-media.jpg" aria-hidden="true" tabindex="-1"><source src="media/social/social-media.mp4" type="video/mp4"></video>
+          <video class="art vid" muted loop playsinline preload="none" poster="media/social/social-media.jpg?v=2" aria-hidden="true" tabindex="-1"><source src="media/social/social-media.mp4?v=2" type="video/mp4"></video>
           <span class="cap"><span><h3>Social media · Feed e historias</h3><small>Piezas y calendario de contenido</small></span><span class="go"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
         </a>
       </li>
       <li class="rv" style="--d:.08s">
         <a class="tile" href="#servicios" data-tab="4">
-          <video class="art vid" muted loop playsinline preload="none" poster="media/planos/planos-tecnicos.jpg" aria-hidden="true" tabindex="-1"><source src="media/planos/planos-tecnicos.mp4" type="video/mp4"></video>
+          <video class="art vid" muted loop playsinline preload="none" poster="media/planos/planos-tecnicos.jpg?v=2" aria-hidden="true" tabindex="-1"><source src="media/planos/planos-tecnicos.mp4?v=2" type="video/mp4"></video>
           <span class="cap"><span><h3>Planos técnicos · Documentación</h3><small>Cortes, vistas y detalles constructivos</small></span><span class="go"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
         </a>
       </li>
