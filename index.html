@@ -1,6 +1,6 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
 /* ---------- vista ampliada de proyectos ---------- */
-.all-projects-cta{display:flex;justify-content:center;margin:2rem auto 0;padding-inline:1rem}
+.all-projects-cta{display:flex;justify-content:center;margin:1.25rem auto 0;padding-inline:1rem}
 .project-screen{position:fixed;inset:0;z-index:9999;overflow-y:auto;background:var(--ink,#100d10);color:var(--fg,#f2ede6);padding:clamp(1rem,4vw,3rem);}
 .project-screen[hidden]{display:none!important}
 .project-screen-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:0 auto 2.5rem;max-width:1200px}
@@ -57,10 +57,50 @@
 .project-wide[hidden]{display:none}
 .project-wide-title{margin:0 0 .6rem!important;font-size:.85rem;color:var(--fg-dim,#c7bdc0)}
 .project-wide-stage{aspect-ratio:16/9;background:#100d10;border:1px solid var(--line,rgba(255,255,255,.18));overflow:hidden}
+.project-wide-empty{width:100%;height:100%;display:grid;place-items:center;padding:1rem;text-align:center;font-size:.9rem;color:var(--fg-dim,#c7bdc0);background:repeating-linear-gradient(135deg,rgba(255,255,255,.035) 0 12px,transparent 12px 24px)}
 .project-wide-stage video{display:block;width:100%;height:100%;object-fit:contain;background:#100d10}
 .all-project-card:after{background:linear-gradient(180deg,transparent 38%,rgba(0,0,0,.62) 68%,rgba(0,0,0,.92))}
 .all-project-card video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .5s}
 .all-project-card:hover video{transform:scale(1.07);filter:saturate(1.08)}
+.project-screen .project-detail-top{gap:.6rem}
+@media(max-width:520px){
+  .project-screen .btn{padding:.55rem .8rem;gap:.45rem;font-size:.62rem;letter-spacing:.1em}
+  .project-screen .btn svg{width:.85rem;height:.85rem}
+  .project-detail-top{margin-bottom:1rem}
+  .project-detail-top .btn{white-space:nowrap}
+}
+/* ficha compacta: entra completa en pantalla */
+.project-detail-top{margin-bottom:.9rem}
+.project-detail-copy{padding:0}
+.project-detail-copy h2{font-size:clamp(1.7rem,3vw,2.5rem);margin:.35rem 0 .5rem}
+.project-detail-copy .project-detail-sub{margin:0 0 .75rem!important;font-size:.95rem}
+.project-detail-copy p{font-size:.92rem;line-height:1.6}
+.project-detail-copy h3{margin:1.1rem 0 .35rem;font-size:.92rem}
+.project-detail-copy ul{font-size:.9rem;line-height:1.6;margin:0}
+.project-wide{margin-top:1.1rem}
+.project-wide-stage{width:min(100%,56vh)}
+.project-detail-nav{margin-top:1rem}
+.project-detail-nav .btn{padding:.7rem 1.1rem;font-size:.7rem}
+@media(min-width:901px){
+  .project-detail-layout{grid-template-columns:minmax(0,.62fr) minmax(0,1.38fr);gap:clamp(1.25rem,3.5vw,3rem)}
+  .project-detail-media{aspect-ratio:9/16;max-height:calc(100vh - 150px)}
+}
+/* pantallas bajas (notebooks): todavía más compacto */
+.project-screen{padding-block:clamp(.9rem,3vh,2rem)}
+.project-detail-top .btn{padding:.6rem .95rem}
+@media(min-width:901px) and (max-height:780px){
+  .project-detail-top{margin-bottom:.6rem}
+  .project-detail-copy h2{font-size:clamp(1.5rem,2.6vw,2.1rem);margin:.25rem 0 .35rem}
+  .project-detail-copy .project-detail-sub{margin:0 0 .5rem!important}
+  .project-detail-copy p{font-size:.88rem;line-height:1.5}
+  .project-detail-copy h3{margin:.8rem 0 .25rem}
+  .project-detail-copy ul{font-size:.86rem;line-height:1.5}
+  .project-wide{margin-top:.8rem}
+  .project-wide-title{margin:0 0 .4rem!important}
+  .project-wide-stage{width:min(100%,43vh)}
+  .project-detail-nav{margin-top:.7rem}
+  .project-detail-media{max-height:calc(100vh - 110px)}
+}
 /* Cursor VER: pequeño, nítido y de alto contraste */
 .ver-cursor{position:fixed;left:0;top:0;z-index:20000;width:16px;height:16px;border:2px solid #8C1530;border-radius:50%;background:#EFE9E1;pointer-events:none;display:grid;place-items:center;opacity:0;transform:translate(-50%,-50%) scale(.9);transition:width .16s ease,height .16s ease,opacity .14s ease,transform .16s ease,background .16s ease;box-shadow:0 0 0 1px rgba(10,9,12,.7),0 1px 5px rgba(0,0,0,.28);mix-blend-mode:normal}
 .ver-cursor:before{content:"";width:4px;height:4px;border-radius:50%;background:#660000}
@@ -70,6 +110,7 @@
 .ver-cursor.is-active:before{width:5px;height:5px}
 .ver-cursor.is-active:after{inset:-5px;border-color:rgba(226,72,95,.95)}
 @media (pointer:fine) and (hover:hover){body.ver-cursor-enabled,body.ver-cursor-enabled a,body.ver-cursor-enabled button,body.ver-cursor-enabled .tile{cursor:none!important}}
+@media (pointer:fine) and (hover:hover){body.ver-cursor-enabled video[controls],body.ver-cursor-enabled video[controls] *,body.ver-cursor-enabled :fullscreen,body.ver-cursor-enabled :fullscreen *,body.ver-cursor-enabled :-webkit-full-screen,body.ver-cursor-enabled :-webkit-full-screen *{cursor:auto!important}}
 @media (prefers-reduced-motion:reduce){.ver-cursor,.all-project-card,.all-project-card img{transition:none!important}.project-screen.is-animating .all-project-card,.project-screen.is-animating .project-detail-layout{animation:none!important}}
 /* Galería con entrada escalonada, hover con profundidad y transición de ficha */
 .all-project-card{transform:translateY(0);transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s,box-shadow .35s;will-change:transform}
@@ -227,7 +268,7 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
 .rev .grp li:nth-child(odd){color:var(--wine-hi);-webkit-text-stroke:0}
 
 /* ---------- servicios (franja crema) ---------- */
-.services{background:var(--cream);color:var(--cream-ink);padding-block:clamp(2.5rem,5.5vw,4.5rem) clamp(4rem,9vw,7.5rem)}
+.services{background:var(--cream);color:var(--cream-ink);padding-block:clamp(1.75rem,4vw,3.25rem) clamp(2.5rem,6vw,4.75rem)}
 .services .eyebrow{color:rgb(26 16 20 / .65)}
 .services .eyebrow::after{background:var(--wine)}
 .sec-head{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(1.5rem,4vw,4rem);align-items:end}
@@ -271,8 +312,8 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
 }
 
 /* ---------- proyectos ---------- */
-.projects{padding-block:clamp(4rem,9vw,7.5rem)}
-.p-head{display:flex;justify-content:space-between;align-items:end;gap:1.5rem;flex-wrap:wrap;margin-bottom:clamp(2rem,5vw,3.25rem)}
+.projects{padding-block:clamp(2.75rem,6vw,5rem)}
+.p-head{display:flex;justify-content:space-between;align-items:end;gap:1.5rem;flex-wrap:wrap;margin-bottom:clamp(1.25rem,3vw,2rem)}
 .loop{overflow-x:auto;scrollbar-width:thin}
 .loop.on{overflow:hidden}
 .loop .track{animation:none}
@@ -285,9 +326,9 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
 .tile video.art{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;background:#fff}
 .tile svg.art{position:absolute;inset:0;width:100%;height:100%;transition:transform .8s var(--ease)}
 .tile:hover svg.art{transform:scale(1.05)}
-.tile::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,transparent 55%,rgb(10 9 12 / .55) 72%,rgb(10 9 12 / .9));pointer-events:none}
+.tile::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,transparent 42%,rgb(10 9 12 / .5) 62%,rgb(10 9 12 / .88) 84%,rgb(10 9 12 / .94));pointer-events:none}
 .cap{position:absolute;left:0;right:0;bottom:0;z-index:3;-webkit-transform:translateZ(0);transform:translateZ(0);display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;padding:1.25rem}
-.cap{text-shadow:0 1px 14px rgb(0 0 0 / .7)}
+.cap{text-shadow:0 1px 2px rgb(0 0 0 / .55),0 2px 16px rgb(0 0 0 / .8)}
 .cap h3{font-size:1.15rem;font-weight:600;margin:0;letter-spacing:.01em;text-wrap:balance}
 .cap small{display:none!important}
 .cap .go{display:none!important}
@@ -304,7 +345,7 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
 @keyframes scan{from{transform:translateX(0)}to{transform:translateX(250px)}}
 
 /* ---------- quiénes somos + filosofía ---------- */
-.about{background:linear-gradient(135deg,var(--wine-deep),#22050c 55%,var(--ink));padding-block:clamp(2.5rem,6vw,5rem);border-block:1px solid var(--line)}
+.about{background:linear-gradient(135deg,var(--wine-deep),#22050c 55%,var(--ink));padding-block:clamp(1.75rem,4.5vw,3.5rem);border-block:1px solid var(--line)}
 .about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(2rem,6vw,6rem);align-items:stretch}
 .about-grid>div{display:flex;flex-direction:column;min-width:0}
 .about p{color:rgb(242 237 230 / .8);max-width:56ch}
@@ -317,6 +358,7 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
 .kicker{color:var(--wine-hi)}
 .about .phil{margin-bottom:3rem}
 .mira{margin-top:auto;padding-top:2rem;border-top:1px solid var(--line)}
+@media(min-width:861px){.mira{margin-bottom:clamp(1.5rem,3.2vw,2.75rem)}}
 .photo{margin:0;max-width:88%}
 .photo .frame{position:relative;aspect-ratio:16/9;max-width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;border:1px dashed rgb(var(--cream-rgb) / .38);background:linear-gradient(135deg,rgb(var(--wine-rgb) / .3),rgb(10 9 12 / .45));color:var(--fg-dim);text-align:center}
 .photo .frame .ico{width:2rem;height:2rem;stroke-width:1.2;color:var(--wine-hi)}
@@ -542,10 +584,10 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
 <div class="marquee" aria-label="Lo que hacemos">
   <div class="track">
     <ul class="grp">
-      <li>Branding</li><li>Vectorización</li><li>Social media</li><li>Motion graphics</li><li>Diseño creativo</li><li>Papelería publicitaria</li><li>Planos técnicos</li><li>Tarjetas digitales</li>
+      <li>Branding</li><li>Vectorización</li><li>Diseño Digital</li><li>Edición de video</li><li>Motion Graphics</li><li>Comunicación Visual</li><li>Papelería publicitaria</li><li>Representación Técnica</li><li>Tarjetas digitales</li>
     </ul>
     <ul class="grp" aria-hidden="true">
-      <li>Branding</li><li>Vectorización</li><li>Social media</li><li>Motion graphics</li><li>Diseño creativo</li><li>Papelería publicitaria</li><li>Planos técnicos</li><li>Tarjetas digitales</li>
+      <li>Branding</li><li>Vectorización</li><li>Diseño Digital</li><li>Edición de video</li><li>Motion Graphics</li><li>Comunicación Visual</li><li>Papelería publicitaria</li><li>Representación Técnica</li><li>Tarjetas digitales</li>
     </ul>
   </div>
 </div>
@@ -563,10 +605,10 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
     <div class="svc rv">
       <div class="tabs" role="tablist" aria-label="Servicios" aria-orientation="vertical">
         <button class="tab" role="tab" id="t0" aria-selected="true" aria-controls="p0"><svg class="ico" aria-hidden="true"><use href="#i-branding"/></svg>Branding<svg class="ico arr" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-        <button class="tab" role="tab" id="t1" aria-selected="false" tabindex="-1" aria-controls="p1"><svg class="ico" aria-hidden="true"><use href="#i-social"/></svg>Social media<svg class="ico arr" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-        <button class="tab" role="tab" id="t2" aria-selected="false" tabindex="-1" aria-controls="p2"><svg class="ico" aria-hidden="true"><use href="#i-motion"/></svg>Motion graphics<svg class="ico arr" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-        <button class="tab" role="tab" id="t3" aria-selected="false" tabindex="-1" aria-controls="p3"><svg class="ico" aria-hidden="true"><use href="#i-creative"/></svg>Diseño creativo<svg class="ico arr" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-        <button class="tab" role="tab" id="t4" aria-selected="false" tabindex="-1" aria-controls="p4"><svg class="ico" aria-hidden="true"><use href="#i-plans"/></svg>Planos técnicos<svg class="ico arr" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <button class="tab" role="tab" id="t1" aria-selected="false" tabindex="-1" aria-controls="p1"><svg class="ico" aria-hidden="true"><use href="#i-social"/></svg>Diseño Digital<svg class="ico arr" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <button class="tab" role="tab" id="t2" aria-selected="false" tabindex="-1" aria-controls="p2"><svg class="ico" aria-hidden="true"><use href="#i-motion"/></svg>Motion Graphics<svg class="ico arr" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <button class="tab" role="tab" id="t3" aria-selected="false" tabindex="-1" aria-controls="p3"><svg class="ico" aria-hidden="true"><use href="#i-creative"/></svg>Comunicación Visual<svg class="ico arr" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <button class="tab" role="tab" id="t4" aria-selected="false" tabindex="-1" aria-controls="p4"><svg class="ico" aria-hidden="true"><use href="#i-plans"/></svg>Representación Técnica<svg class="ico arr" aria-hidden="true"><use href="#i-arrow"/></svg></button>
       </div>
 
       <div>
@@ -579,28 +621,28 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
         </div>
         <div class="tp" role="tabpanel" id="p1" aria-labelledby="t1" hidden>
           <div class="big"><svg class="ico" aria-hidden="true"><use href="#i-social"/></svg></div>
-          <h3>Social media</h3>
+          <h3>Diseño Digital</h3>
           <p>Estrategias, piezas visuales y contenido para redes sociales.</p>
           <p class="inc">Incluye</p>
-          <ul class="chips"><li>Publicaciones para feed</li><li>Historias</li><li>Banners y portadas</li><li>Publicidad para redes</li><li>Calendarios de contenido</li></ul>
+          <ul class="chips"><li>Publicaciones para feed</li><li>Historias</li><li>Banners y portadas</li><li>Publicidad para redes</li><li>Edición de video</li><li>Calendarios de contenido</li></ul>
         </div>
         <div class="tp" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
           <div class="big"><svg class="ico" aria-hidden="true"><use href="#i-motion"/></svg></div>
-          <h3>Motion graphics</h3>
+          <h3>Motion Graphics</h3>
           <p>Diseño en movimiento y contenido audiovisual dinámico para dar vida a tu marca en medios digitales.</p>
           <p class="inc">Incluye</p>
           <ul class="chips"><li>Animaciones 2D</li><li>Videos interactivos</li><li>Transiciones y efectos</li><li>Tipografías animadas</li><li>Presentaciones animadas</li><li>Contenido para redes y publicidad</li></ul>
         </div>
         <div class="tp" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
           <div class="big"><svg class="ico" aria-hidden="true"><use href="#i-creative"/></svg></div>
-          <h3>Diseño creativo</h3>
+          <h3>Comunicación Visual</h3>
           <p>Soluciones visuales claras y profesionales, aplicadas a marcas, proyectos y piezas de comunicación.</p>
           <p class="inc">Incluye</p>
           <ul class="chips"><li>Diseño editorial</li><li>Presentaciones</li><li>Infografías</li><li>Material institucional</li><li>Señalética y cartelería</li><li>Layouts personalizados</li><li>Invitaciones digitales</li></ul>
         </div>
         <div class="tp" role="tabpanel" id="p4" aria-labelledby="t4" hidden>
           <div class="big"><svg class="ico" aria-hidden="true"><use href="#i-plans"/></svg></div>
-          <h3>Planos técnicos</h3>
+          <h3>Representación Técnica</h3>
           <p>Documentación visual técnica para proyectos comerciales, industriales y constructivos.</p>
           <p class="inc">Incluye</p>
           <ul class="chips"><li>Planos de instalaciones</li><li>Cortes y vistas</li><li>Detalles constructivos</li><li>Planos de evacuación</li><li>Planos de redes</li></ul>
@@ -628,25 +670,25 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
       <li>
         <a class="tile" href="#projectScreen" data-project="branding" aria-label="Ver descripción del proyecto de Branding">
           <video class="art vid" muted loop playsinline preload="none" poster="media/branding/branding.jpg?v=2" aria-hidden="true" tabindex="-1"><source src="media/branding/branding.mp4?v=2" type="video/mp4"></video>
-          <span class="cap"><span><h3>Branding · Identidad visual</h3></span></span>
+          <span class="cap"><span><h3>Branding</h3></span></span>
         </a>
       </li>
       <li>
-        <a class="tile" href="#projectScreen" data-project="motion" aria-label="Ver descripción del proyecto de Motion graphics">
+        <a class="tile" href="#projectScreen" data-project="motion" aria-label="Ver descripción del proyecto de Motion Graphics">
           <video class="art vid" muted loop playsinline preload="none" poster="media/motion/motion-graphics.jpg?v=2" aria-hidden="true" tabindex="-1"><source src="media/motion/motion-graphics.mp4?v=2" type="video/mp4"></video>
-          <span class="cap"><span><h3>Motion graphics · Video promocional</h3></span></span>
+          <span class="cap"><span><h3>Motion Graphics</h3></span></span>
         </a>
       </li>
       <li>
-        <a class="tile" href="#projectScreen" data-project="social" aria-label="Ver descripción del proyecto de Social media">
+        <a class="tile" href="#projectScreen" data-project="social" aria-label="Ver descripción del proyecto de Diseño Digital">
           <video class="art vid" muted loop playsinline preload="none" poster="media/social/social-media.jpg?v=2" aria-hidden="true" tabindex="-1"><source src="media/social/social-media.mp4?v=2" type="video/mp4"></video>
-          <span class="cap"><span><h3>Social media · Feed e historias</h3></span></span>
+          <span class="cap"><span><h3>Diseño Digital</h3></span></span>
         </a>
       </li>
       <li>
-        <a class="tile" href="#projectScreen" data-project="planos" aria-label="Ver descripción del proyecto de Planos técnicos">
+        <a class="tile" href="#projectScreen" data-project="planos" aria-label="Ver descripción del proyecto de Representación Técnica">
           <video class="art vid" muted loop playsinline preload="none" poster="media/planos/planos-tecnicos.jpg?v=2" aria-hidden="true" tabindex="-1"><source src="media/planos/planos-tecnicos.mp4?v=2" type="video/mp4"></video>
-          <span class="cap"><span><h3>Planos técnicos · Documentación</h3></span></span>
+          <span class="cap"><span><h3>Representación Técnica</h3></span></span>
         </a>
       </li>
     </ul>
@@ -664,10 +706,6 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
   </div>
   <div class="project-filters" id="projectFilters" role="group" aria-label="Filtrar proyectos por categoría"></div>
   <div class="all-projects-grid" id="allProjectsGrid">
-    <button class="all-project-card" type="button" data-project="branding" data-cat="Branding"><img src="media/branding/branding.jpg?v=2" alt="Vista previa de un proyecto de identidad visual"><span><strong>Branding</strong><small>Identidad visual y sistema de marca</small></span></button>
-    <button class="all-project-card" type="button" data-project="motion" data-cat="Motion graphics"><img src="media/motion/motion-graphics.jpg?v=2" alt="Vista previa de un proyecto de motion graphics"><span><strong>Motion graphics</strong><small>Animación y video promocional</small></span></button>
-    <button class="all-project-card" type="button" data-project="social" data-cat="Social media"><img src="media/social/social-media.jpg?v=2" alt="Vista previa de piezas para redes sociales"><span><strong>Social media</strong><small>Feed, historias y comunicación digital</small></span></button>
-    <button class="all-project-card" type="button" data-project="planos" data-cat="Planos técnicos"><img src="media/planos/planos-tecnicos.jpg?v=2" alt="Vista previa de documentación técnica"><span><strong>Planos técnicos</strong><small>Documentación y representación técnica</small></span></button>
   </div>
   <div class="project-detail" id="projectDetail" hidden>
     <div class="project-detail-top"><button class="btn" type="button" id="backToAllProjects">← Todos los proyectos</button><button class="btn" type="button" data-close-projects>Cerrar ×</button></div>
@@ -743,7 +781,7 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
     </div>
     <div class="qs rv" style="--d:.1s">
       <button class="q" id="q0" aria-expanded="true" aria-controls="a0">¿Qué servicios ofrece VER Studio?<i aria-hidden="true"></i></button>
-      <div class="a" id="a0" role="region" aria-labelledby="q0"><div><p>Desarrollamos soluciones visuales que incluyen branding, motion graphics, comunicación visual, social media, planos técnicos, vectorización y tarjetas digitales personalizadas.</p></div></div>
+      <div class="a" id="a0" role="region" aria-labelledby="q0"><div><p>Desarrollamos soluciones visuales que incluyen branding, motion graphics, comunicación visual, diseño digital, representación técnica, vectorización y tarjetas digitales personalizadas.</p></div></div>
       <button class="q" id="q1" aria-expanded="false" aria-controls="a1">¿Trabajan proyectos personalizados?<i aria-hidden="true"></i></button>
       <div class="a" id="a1" role="region" aria-labelledby="q1"><div><p>Sí, cada proyecto se desarrolla según las necesidades y los objetivos de cada cliente.</p></div></div>
       <button class="q" id="q2" aria-expanded="false" aria-controls="a2">¿Cómo puedo solicitar un presupuesto?<i aria-hidden="true"></i></button>
@@ -798,106 +836,7 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
 
 <a class="wa-fab" href="https://wa.link/73znx2" target="_blank" rel="noopener noreferrer" aria-label="Escribinos por WhatsApp"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg></a>
 
-<!-- ============================================================
-  PROYECTOS: acá se edita todo el contenido del portafolio.
-  Cada proyecto se escribe UNA sola vez y alimenta:
-   · la home (4 tarjetas al azar, mudas, usando "preview")
-   · "Todos los proyectos" (tarjeta con "cover" + filtro por "categories")
-   · la ficha del proyecto (descripción, proceso y todo "media" CON sonido)
-  Para sumar un proyecto, copiá un bloque { ... } y cambiá los datos.
-  "media" admite videos y fotos en el orden que quieras:
-     { type:'video', src:'media/xxx/video-1.mp4', poster:'media/xxx/video-1.jpg', title:'Texto opcional' }
-     { type:'image', src:'media/xxx/foto-1.jpg', title:'Texto opcional' }
-  Opcionales por proyecto:
-   · subtitle:'Texto' -> se muestra bajo el título en la ficha
-   · wide:{ src, poster, title } -> video horizontal 16:9 que va debajo del "Proceso de trabajo"
-============================================================ -->
-<script id="proyectos-data">
-window.VER_PROJECTS=[
-  {
-    id:'branding',
-    title:'Branding',
-    label:'Branding · Identidad visual',
-    category:'Identidad visual',
-    line:'Identidad visual y sistema de marca',
-    categories:['Branding'],
-    alt:'Vista previa de un proyecto de identidad visual',
-    cover:'media/branding/branding.jpg?v=2',
-    preview:'media/branding/branding.mp4?v=2',
-    description:'Desarrollo de una identidad visual pensada para darle personalidad a una marca y mantener una comunicación coherente en todos sus puntos de contacto.',
-    process:['Definición del concepto y la personalidad de marca.','Exploración de recursos gráficos, tipografía y paleta cromática.','Aplicación de la identidad en piezas visuales.'],
-    media:[
-      { type:'video', src:'media/branding/branding.mp4?v=2', poster:'media/branding/branding.jpg?v=2', title:'Video completo' }
-    ]
-  },
-  {
-    id:'motion',
-    title:'Motion graphics',
-    label:'Motion graphics · Video promocional',
-    category:'Animación y video promocional',
-    line:'Animación y video promocional',
-    categories:['Motion graphics'],
-    alt:'Vista previa de un proyecto de motion graphics',
-    cover:'media/motion/motion-graphics.jpg?v=2',
-    preview:'media/motion/motion-graphics.mp4?v=2',
-    description:'Una pieza audiovisual que combina movimiento, ritmo y recursos gráficos para comunicar una idea de forma dinámica y captar la atención.',
-    process:['Organización de la idea y la secuencia visual.','Diseño de elementos y composición de escenas.','Animación, transiciones y ajuste del ritmo audiovisual.'],
-    media:[
-      { type:'video', src:'media/motion/motion-graphics.mp4?v=2', poster:'media/motion/motion-graphics.jpg?v=2', title:'Video completo' }
-    ]
-  },
-  {
-    id:'reel3d',
-    title:'Reel Animado 3D',
-    subtitle:'Inspirado en Mauro Arredondo',
-    label:'Reel Animado 3D · Inspirado en Mauro Arredondo',
-    category:'Animación y video promocional',
-    line:'Inspirado en Mauro Arredondo',
-    categories:['Motion graphics'],
-    alt:'Vista previa del Reel Animado 3D',
-    cover:'media/motion/reel-animado-3d.jpg',
-    preview:'media/motion/reel-animado-3d-preview.mp4',
-    description:'Reel vertical animado que presenta tres aplicaciones para organizar el trabajo (Trello, monday.com y Notion), combinando tipografía en movimiento, interfaces animadas y transiciones dinámicas, con un estilo inspirado en Mauro Arredondo.',
-    process:['Selección del contenido y planteo visual del reel.','Diseño de las pantallas e interfaces de cada aplicación.','Animación de tipografía, elementos y transiciones, y ajuste del ritmo.'],
-    media:[
-      { type:'video', src:'media/motion/reel-animado-3d.mp4', poster:'media/motion/reel-animado-3d.jpg', title:'Reel completo' }
-    ],
-    wide:{ src:'media/motion/reel-animado-3d-16x9.mp4', poster:'media/motion/reel-animado-3d-16x9.jpg', title:'Así se hizo: el proceso de animación' }
-  },
-  {
-    id:'social',
-    title:'Social media',
-    label:'Social media · Feed e historias',
-    category:'Contenido para redes sociales',
-    line:'Feed, historias y comunicación digital',
-    categories:['Social media'],
-    alt:'Vista previa de piezas para redes sociales',
-    cover:'media/social/social-media.jpg?v=2',
-    preview:'media/social/social-media.mp4?v=2',
-    description:'Sistema de piezas gráficas para redes sociales, con una línea visual consistente y formatos pensados para comunicar de manera clara en entornos digitales.',
-    process:['Definición de la línea visual y los formatos.','Diseño de piezas para feed e historias.','Adaptación de los recursos para mantener coherencia entre publicaciones.'],
-    media:[
-      { type:'video', src:'media/social/social-media.mp4?v=2', poster:'media/social/social-media.jpg?v=2', title:'Video completo' }
-    ]
-  },
-  {
-    id:'planos',
-    title:'Planos técnicos',
-    label:'Planos técnicos · Documentación',
-    category:'Documentación y representación técnica',
-    line:'Documentación y representación técnica',
-    categories:['Planos técnicos'],
-    alt:'Vista previa de documentación técnica',
-    cover:'media/planos/planos-tecnicos.jpg?v=2',
-    preview:'media/planos/planos-tecnicos.mp4?v=2',
-    description:'Representación técnica orientada a organizar información espacial y constructiva mediante planos claros, jerarquías visuales y detalles de lectura precisa.',
-    process:['Revisión y organización de la información disponible.','Elaboración de vistas, cortes y detalles necesarios.','Jerarquización gráfica para facilitar la lectura de la documentación.'],
-    media:[
-      { type:'video', src:'media/planos/planos-tecnicos.mp4?v=2', poster:'media/planos/planos-tecnicos.jpg?v=2', title:'Video completo' }
-    ]
-  }
-];
-</script>
+<script src="proyectos.js"></script>
 
 <script>
 (function(){
@@ -927,9 +866,41 @@ window.VER_PROJECTS=[
   if(d.fonts&&d.fonts.ready) d.fonts.ready.then(function(){
     $$('.marquee .grp').forEach(function(g){g.removeAttribute('data-filled')});
   });
-  /* datos de proyectos (se editan en <script id="proyectos-data">) */
-  var PROJECTS=window.VER_PROJECTS||[], byId={};
-  PROJECTS.forEach(function(p){byId[p.id]=p});
+  /* datos de proyectos: se editan en proyectos.js (no acá). Se completan los valores por defecto de cada carpeta. */
+  var VER_V=window.VER_VERSION;
+  function mUrl(folder,f){
+    if(!f) return '';
+    var u=(/^(https?:)?\/\//.test(f)||f.indexOf('/')>-1)?f:'media/'+folder+'/'+f;
+    return VER_V?u+(u.indexOf('?')>-1?'&':'?')+'v='+encodeURIComponent(VER_V):u;
+  }
+  function isImg(f){return /\.(jpe?g|png|webp|gif|avif)(\?.*)?$/i.test(f)}
+  var PROJECTS=[], byId={};
+  (window.VER_PROJECTS||[]).forEach(function(r,n){
+    if(!r||!r.carpeta||!r.titulo){ if(window.console) console.warn('proyectos.js: al proyecto n.º '+(n+1)+' le falta carpeta o titulo.'); return; }
+    if(r.visible===false||byId[r.carpeta]) return;
+    var OFICIALES=window.VER_CATEGORIAS||[];
+    function norm(t){return String(t).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim()}
+    var f=r.carpeta, cats=(r.categorias||[]).map(function(c){
+      var k=OFICIALES.filter(function(o){return norm(o)===norm(c)})[0];
+      if(!k&&window.console&&OFICIALES.length) console.warn('proyectos.js: la categoría "'+c+'" no está en VER_CATEGORIAS (proyecto "'+r.titulo+'").');
+      return k||String(c).trim();
+    }), rubro=r.rubro||cats[0]||'', sub=r.inspiracion?('Inspirado en '+r.inspiracion):(r.subtitulo||'');
+    var p={
+      id:f, title:r.titulo, subtitle:sub, category:(cats.length?cats.join(' · '):rubro),
+      label:r.titulo,
+      categories:cats, alt:'Vista previa de '+r.titulo,
+      cover:mUrl(f,r.portada||'cover.jpg'),
+      preview:mUrl(f,r.vista===false?'':(r.vista||'preview.mp4')),
+      description:r.descripcion||'', process:r.proceso||[],
+      media:(r.contenido||[]).map(function(m){
+        var a=m.archivo||'', o={type:isImg(a)?'image':'video',src:mUrl(f,a),title:m.titulo||''};
+        if(m.poster) o.poster=mUrl(f,m.poster);
+        return o;
+      }),
+      wide:r.horizontal?{src:r.horizontal.archivo?mUrl(f,r.horizontal.archivo):'',poster:r.horizontal.poster?mUrl(f,r.horizontal.poster):'',title:r.horizontal.titulo||''}:null
+    };
+    byId[f]=p; PROJECTS.push(p);
+  });
   function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 
   /* home: 4 tarjetas al azar en cada visita, siempre mudas */
@@ -1024,7 +995,7 @@ window.VER_PROJECTS=[
     var art=p.preview
       ?'<video muted loop playsinline preload="none" poster="'+esc(p.cover)+'" aria-hidden="true" tabindex="-1"><source src="'+esc(p.preview)+'" type="video/mp4"></video>'
       :'<img src="'+esc(p.cover)+'" alt="'+esc(p.alt||p.title)+'">';
-    return '<button class="all-project-card" type="button" data-project="'+esc(p.id)+'" data-cat="'+esc((p.categories||[]).join('|'))+'">'+art+'<span><strong>'+esc(p.title)+'</strong><small>'+esc(p.line||'')+'</small></span></button>';
+    return '<button class="all-project-card" type="button" data-project="'+esc(p.id)+'" data-cat="'+esc((p.categories||[]).join('|'))+'">'+art+'<span><strong>'+esc(p.title)+'</strong><small>'+esc(p.subtitle||'')+'</small></span></button>';
   }).join('');
 
   /* tarjetas: con mouse el video se activa al pasar el cursor; en pantallas táctiles, mientras la tarjeta se ve.
@@ -1068,6 +1039,10 @@ window.VER_PROJECTS=[
   function showWide(p){
     killVideos(wideStage);
     if(!p.wide){wide.hidden=true;return}
+    if(!p.wide.src){
+      var em=document.createElement('div'); em.className='project-wide-empty'; em.textContent='Video del proceso · próximamente'; wideStage.appendChild(em);
+      wideTitle.textContent=p.wide.title||''; wideTitle.hidden=!p.wide.title; wide.hidden=false; return;
+    }
     var v=document.createElement('video'); v.controls=true; v.muted=false; v.playsInline=true; v.preload='metadata';
     if(p.wide.poster) v.poster=p.wide.poster;
     v.src=p.wide.src; wideStage.appendChild(v);
@@ -1155,10 +1130,12 @@ window.VER_PROJECTS=[
     $$('.filter-chip',filterBar).forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-filter')===cat))});
   }
   (function buildFilters(){
-    var cats=['Todos'];
+    var found=[];
     $$('.all-project-card',allProjectsGrid).forEach(function(card){
-      (card.getAttribute('data-cat')||'').split('|').forEach(function(c){if(c&&cats.indexOf(c)<0)cats.push(c)});
+      (card.getAttribute('data-cat')||'').split('|').forEach(function(c){if(c&&found.indexOf(c)<0)found.push(c)});
     });
+    found.sort(function(a,b){return a.localeCompare(b,'es',{sensitivity:'base'})});
+    var cats=['Todos'].concat(found);
     cats.forEach(function(c){
       var b=document.createElement('button');
       b.type='button';b.className='filter-chip';b.textContent=c;b.setAttribute('data-filter',c);
@@ -1409,8 +1386,9 @@ window.VER_PROJECTS=[
     function paint(){px+=(x-px)*.34;py+=(y-py)*.34;cursor.style.left=px+'px';cursor.style.top=py+'px';if(Math.abs(x-px)>.3||Math.abs(y-py)>.3){raf=requestAnimationFrame(paint)}else raf=0}
     window.addEventListener('pointermove',function(e){if(e.pointerType==='touch')return;x=e.clientX;y=e.clientY;cursor.classList.add('is-visible');if(!raf)raf=requestAnimationFrame(paint);var target=e.target.closest('a,button,.all-project-card,.tile,[role="button"]');cursor.classList.toggle('is-active',!!target);},{passive:true});
     document.addEventListener('pointerleave',function(){cursor.classList.remove('is-visible','is-active')});
-    document.addEventListener('pointerover',function(e){if(e.target.closest('input,textarea,select,[contenteditable="true"]'))cursor.style.display='none';});
-    document.addEventListener('pointerout',function(e){if(e.target.closest('input,textarea,select,[contenteditable="true"]'))cursor.style.display='';});
+    document.addEventListener('fullscreenchange',function(){cursor.style.display=document.fullscreenElement?'none':''});document.addEventListener('webkitfullscreenchange',function(){cursor.style.display=document.webkitFullscreenElement?'none':''});
+    document.addEventListener('pointerover',function(e){if(e.target.closest('input,textarea,select,video[controls],[contenteditable="true"]'))cursor.style.display='none';});
+    document.addEventListener('pointerout',function(e){if(e.target.closest('input,textarea,select,video[controls],[contenteditable="true"]'))cursor.style.display='';});
   }
   function animateGallery(){
     if(!screen||!grid||!detail||reduce)return;
