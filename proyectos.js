@@ -96,8 +96,8 @@ window.VER_PROJECTS=[
 
   {
     carpeta:'social',
-    titulo:'Diseño Digital',
-    inspiracion:'Nombre del referente',
+    titulo:'Flyer Parallax 3d It ',
+    inspiracion:'Mauro Arredondo',
     categorias:['Diseño Digital'],
     descripcion:'Sistema de piezas gráficas para redes sociales, con una línea visual consistente y formatos pensados para comunicar de manera clara en entornos digitales.',
     proceso:['Definición de la línea visual y los formatos.','Diseño de piezas para feed e historias.','Adaptación de los recursos para mantener coherencia entre publicaciones.'],
