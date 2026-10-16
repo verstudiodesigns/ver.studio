@@ -1009,6 +1009,18 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
     function rest(v){v.pause(); try{v.currentTime=0}catch(e){}}
     var mouse=window.matchMedia&&matchMedia('(hover:hover) and (pointer:fine)').matches;
     if(HOVER_MODE&&mouse){
+      /* precarga: cuando una tarjeta se acerca a la pantalla, su clip empieza a descargarse,
+         así al pasar el mouse arranca al instante y no se traba */
+      if('IntersectionObserver' in window&&!save){
+        var warm=new IntersectionObserver(function(es){
+          es.forEach(function(e){
+            if(!e.isIntersecting) return;
+            var v=e.target; warm.unobserve(v);
+            if(v.preload!=='auto'){v.preload='auto'; try{v.load()}catch(_){}}
+          });
+        },{rootMargin:'300px'});
+        vids.forEach(function(v){warm.observe(v)});
+      }
       $$('.all-project-card',allProjectsGrid).forEach(function(card){
         var v=$('video',card); if(!v) return;
         card.addEventListener('pointerenter',function(){if(motionOK()) go(v)});
