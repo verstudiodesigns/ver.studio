@@ -1043,7 +1043,8 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
       var em=document.createElement('div'); em.className='project-wide-empty'; em.textContent='Video del proceso · próximamente'; wideStage.appendChild(em);
       wideTitle.textContent=p.wide.title||''; wideTitle.hidden=!p.wide.title; wide.hidden=false; return;
     }
-    var v=document.createElement('video'); v.controls=true; v.muted=false; v.playsInline=true; v.preload='metadata';
+    /* el video horizontal del proceso es una muestra: siempre sin sonido */
+    var v=document.createElement('video'); v.controls=true; v.muted=true; v.defaultMuted=true; v.setAttribute('muted',''); v.playsInline=true; v.preload='metadata';
     if(p.wide.poster) v.poster=p.wide.poster;
     wideStage.style.aspectRatio='';wideStage.style.width='';
     v.addEventListener('loadedmetadata',function(){
@@ -1059,7 +1060,7 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
   projectScreen.addEventListener('play',function(e){
     if(!e.target.closest||!e.target.closest('#projectStage,#projectWideStage')) return;
     $$('#projectStage video,#projectWideStage video').forEach(function(v){if(v!==e.target)v.pause()});
-    if(e.target.tagName==='VIDEO'){e.target.muted=false;e.target.defaultMuted=false;e.target.volume=1}
+    if(e.target.tagName==='VIDEO'&&e.target.closest('#projectStage')){e.target.muted=false;e.target.defaultMuted=false;e.target.volume=1}
   },true);
   function showMedia(i,autoplay){
     var p=byId[activeProject]; if(!p) return;
