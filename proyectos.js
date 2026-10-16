@@ -37,6 +37,20 @@ window.VER_VERSION='4';
 
 window.VER_PROJECTS=[
      {
+    carpeta:'logo-artemis',
+    titulo:'Logo Artemis',
+    inspiracion:'Mauro Arredondo',
+    categorias:['Motion Graphics'],
+    descripcion:'Artemis de la Nasa tuvo como objetivo llevar a la primera mujer y a la próxima persona de color a la Luna. Misión histórica que establece la presencia humana sostenible en el satélite natural como base para futuras misiones tripuladas a Marte.',
+    proceso:['Conceptualización y bocetaje', 'Desarrollo de Activos y Rigging de elementos, vectores y texturas.', 'Animación y renderizado en alta calidad.'],
+    contenido:[
+      { archivo:'reel.mp4' },
+      { archivo:'foto-1.jpg' }
+    ],
+    horizontal:{ archivo:'proceso-16x9.mp4', poster:'proceso-16x9.jpg', titulo:'Así se hizo' }
+  },
+
+     {
     carpeta:'reel-motivacional-messi',
     titulo:'Reel Motivacional Messi',
     inspiracion:'Mauro Arredondo',
