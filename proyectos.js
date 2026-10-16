@@ -45,7 +45,6 @@ window.VER_PROJECTS=[
     proceso:['Conceptualización y bocetaje', 'Desarrollo de Activos y Rigging de elementos, vectores y texturas.', 'Animación y renderizado en alta calidad.'],
     contenido:[
       { archivo:'reel.mp4' },
-      { archivo:'foto-1.jpg' }
     ],
     horizontal:{ archivo:'proceso-16x9.mp4', poster:'proceso-16x9.jpg', titulo:'Así se hizo' }
   },
