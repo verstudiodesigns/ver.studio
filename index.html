@@ -995,7 +995,7 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
     var art=p.preview
       ?'<video muted loop playsinline preload="none" poster="'+esc(p.cover)+'" aria-hidden="true" tabindex="-1"><source src="'+esc(p.preview)+'" type="video/mp4"></video>'
       :'<img src="'+esc(p.cover)+'" alt="'+esc(p.alt||p.title)+'">';
-    return '<button class="all-project-card" type="button" data-project="'+esc(p.id)+'" data-cat="'+esc((p.categories||[]).join('|'))+'">'+art+'<span><strong>'+esc(p.title)+'</strong><small>'+esc(p.subtitle||'')+'</small></span></button>';
+    return '<button class="all-project-card" type="button" data-project="'+esc(p.id)+'" data-cat="'+esc((p.categories||[]).join('|'))+'">'+art+'<span><strong>'+esc(p.title)+'</strong>'+(p.subtitle?'<small>'+esc(p.subtitle)+'</small>':'')+'</span></button>';
   }).join('');
 
   /* tarjetas: con mouse el video se activa al pasar el cursor; en pantallas táctiles, mientras la tarjeta se ve.
