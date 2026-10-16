@@ -1,4 +1,97 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+/* ---------- vista ampliada de proyectos ---------- */
+.all-projects-cta{display:flex;justify-content:center;margin:2rem auto 0;padding-inline:1rem}
+.project-screen{position:fixed;inset:0;z-index:9999;overflow-y:auto;background:var(--ink,#100d10);color:var(--fg,#f2ede6);padding:clamp(1rem,4vw,3rem);}
+.project-screen[hidden]{display:none!important}
+.project-screen-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:0 auto 2.5rem;max-width:1200px}
+.project-screen-head .eyebrow{color:var(--wine-hi,#c8878f)}
+.project-screen-head h2{font-size:clamp(2rem,5vw,4rem);margin:.35rem 0 0}
+.project-screen-actions{display:flex;gap:.65rem;flex-wrap:wrap}
+.project-screen .btn{cursor:pointer}
+.all-projects-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;max-width:1200px;margin:0 auto}
+.all-project-card{position:relative;display:block;width:100%;padding:0;overflow:hidden;aspect-ratio:3/4;text-align:left;color:inherit;background:var(--ink-2,#20171b);border:1px solid var(--line,rgba(255,255,255,.18));cursor:pointer}
+.all-project-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.all-project-card:hover img{transform:scale(1.04)}
+.all-project-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.85))}
+.all-project-card span{position:absolute;z-index:1;left:1rem;right:1rem;bottom:1rem}
+.all-project-card strong{display:block;font-size:1.05rem;font-weight:600}
+.all-project-card small{display:block;margin-top:.35rem;color:var(--fg-dim,#c7bdc0);font-size:.82rem}
+.project-detail{max-width:1200px;margin:0 auto}
+.project-detail-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.5rem}
+.project-detail-layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(1.5rem,5vw,4rem);align-items:start}
+.project-detail-media{position:relative;background:#171114;border:1px solid var(--line,rgba(255,255,255,.18));overflow:hidden;aspect-ratio:9/12}
+.project-detail-media video{display:block;width:100%;height:100%;object-fit:contain;background:#100d10}
+.project-detail-copy{padding:clamp(.5rem,2vw,1.5rem) 0}
+.project-detail-copy .eyebrow{color:var(--wine-hi,#c8878f)}
+.project-detail-copy h2{font-size:clamp(2rem,4vw,3.5rem);line-height:1.05;margin:.5rem 0 1.25rem}
+.project-detail-copy p{max-width:58ch;color:var(--fg-dim,#c7bdc0);line-height:1.8}
+.project-detail-copy h3{margin:2rem 0 .6rem;font-size:1rem}
+.project-detail-copy ul{padding-left:1.2rem;color:var(--fg-dim,#c7bdc0);line-height:1.9}
+.project-detail-nav{display:flex;gap:.65rem;flex-wrap:wrap;margin-top:2rem}
+@media(max-width:900px){.all-projects-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.project-detail-layout{grid-template-columns:1fr}.project-detail-media{aspect-ratio:9/10;max-height:70vh}}
+@media(max-width:520px){.project-screen{padding:1rem}.project-screen-head{align-items:flex-start}.project-screen-head h2{font-size:2rem}.project-screen-head{flex-direction:column}.all-projects-grid{gap:.65rem}.all-project-card span{left:.7rem;right:.7rem;bottom:.7rem}.all-project-card strong{font-size:.9rem}.all-project-card small{font-size:.72rem}.project-detail-top{align-items:flex-start}}
+.project-filters{display:flex;flex-wrap:wrap;gap:.6rem;max-width:1200px;margin:0 auto 1.75rem}
+.project-filters[hidden],#allProjectsHead[hidden]+.project-filters{display:none!important}
+.filter-chip{cursor:pointer;font:inherit;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-dim,#c7bdc0);background:transparent;border:1px solid var(--line,rgba(255,255,255,.18));padding:.55rem 1.05rem;transition:background .25s,color .25s,border-color .25s}
+.filter-chip:hover{border-color:rgba(200,135,143,.8);color:var(--fg,#f2ede6)}
+.filter-chip[aria-pressed="true"]{background:#660000;border-color:#8C1530;color:#f5f0eb}
+.all-project-card[hidden]{display:none!important}
+@media(max-width:520px){.project-filters{gap:.45rem;margin-bottom:1.25rem}.filter-chip{font-size:.72rem;padding:.5rem .8rem}}
+/* ficha: escenario multimedia + miniaturas */
+.project-detail-media-wrap{min-width:0}
+.project-detail-media img{display:block;width:100%;height:100%;object-fit:contain;background:#100d10}
+.project-stage-caption{margin:.75rem 0 0;min-height:1.2em;font-size:.85rem;color:var(--fg-dim,#c7bdc0)}
+.project-thumbs{display:flex;gap:.6rem;margin-top:.9rem;overflow-x:auto;padding-bottom:.35rem;scrollbar-width:thin}
+.project-thumbs[hidden]{display:none}
+.project-thumb{position:relative;flex:none;width:72px;height:96px;padding:0;overflow:hidden;cursor:pointer;background:#171114;border:1px solid var(--line,rgba(255,255,255,.18));opacity:.62;transition:opacity .25s,border-color .25s}
+.project-thumb:hover{opacity:1}
+.project-thumb[aria-pressed="true"]{opacity:1;border-color:#c8878f}
+.project-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.project-thumb i{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+.project-thumb i.is-video:before{content:"";border-left:13px solid #fff;border-top:8px solid transparent;border-bottom:8px solid transparent;filter:drop-shadow(0 1px 3px rgba(0,0,0,.7))}
+.tile img.art{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover}
+/* subtítulo, video horizontal bajo el proceso y video en tarjetas */
+.project-detail-sub{margin:-.6rem 0 1.25rem!important;font-size:1rem;color:var(--wine-hi,#c8878f)!important;letter-spacing:.02em}
+.project-detail-sub[hidden]{display:none}
+.project-wide{margin-top:2rem}
+.project-wide[hidden]{display:none}
+.project-wide-title{margin:0 0 .6rem!important;font-size:.85rem;color:var(--fg-dim,#c7bdc0)}
+.project-wide-stage{aspect-ratio:16/9;background:#100d10;border:1px solid var(--line,rgba(255,255,255,.18));overflow:hidden}
+.project-wide-stage video{display:block;width:100%;height:100%;object-fit:contain;background:#100d10}
+.all-project-card:after{background:linear-gradient(180deg,transparent 38%,rgba(0,0,0,.62) 68%,rgba(0,0,0,.92))}
+.all-project-card video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .5s}
+.all-project-card:hover video{transform:scale(1.07);filter:saturate(1.08)}
+/* Cursor VER: pequeño, nítido y de alto contraste */
+.ver-cursor{position:fixed;left:0;top:0;z-index:20000;width:16px;height:16px;border:2px solid #8C1530;border-radius:50%;background:#EFE9E1;pointer-events:none;display:grid;place-items:center;opacity:0;transform:translate(-50%,-50%) scale(.9);transition:width .16s ease,height .16s ease,opacity .14s ease,transform .16s ease,background .16s ease;box-shadow:0 0 0 1px rgba(10,9,12,.7),0 1px 5px rgba(0,0,0,.28);mix-blend-mode:normal}
+.ver-cursor:before{content:"";width:4px;height:4px;border-radius:50%;background:#660000}
+.ver-cursor:after{content:"";position:absolute;inset:-4px;border:1px solid rgba(239,233,225,.9);border-radius:50%;opacity:.85}
+.ver-cursor.is-visible{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.ver-cursor.is-active{width:19px;height:19px;background:#fff;border-color:#660000}
+.ver-cursor.is-active:before{width:5px;height:5px}
+.ver-cursor.is-active:after{inset:-5px;border-color:rgba(226,72,95,.95)}
+@media (pointer:fine) and (hover:hover){body.ver-cursor-enabled,body.ver-cursor-enabled a,body.ver-cursor-enabled button,body.ver-cursor-enabled .tile{cursor:none!important}}
+@media (prefers-reduced-motion:reduce){.ver-cursor,.all-project-card,.all-project-card img{transition:none!important}.project-screen.is-animating .all-project-card,.project-screen.is-animating .project-detail-layout{animation:none!important}}
+/* Galería con entrada escalonada, hover con profundidad y transición de ficha */
+.all-project-card{transform:translateY(0);transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s,box-shadow .35s;will-change:transform}
+.all-project-card:before{content:"";position:absolute;z-index:2;inset:0;pointer-events:none;border:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+.all-project-card:hover{transform:translateY(-7px);border-color:rgba(200,135,143,.8);box-shadow:0 18px 42px rgba(0,0,0,.28)}
+.all-project-card:hover:before{border-color:rgba(245,240,235,.45);box-shadow:inset 0 0 0 5px rgba(102,0,0,.16)}
+.all-project-card img{transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .5s}
+.all-project-card:hover img{transform:scale(1.07);filter:saturate(1.08)}
+.project-screen.is-animating .project-screen-head{animation:ver-rise .55s both}
+.project-screen.is-animating .all-project-card{animation:ver-card-in .65s cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--card-delay,0ms)}
+.project-screen.is-animating .project-detail-layout{animation:ver-detail-in .65s cubic-bezier(.2,.7,.2,1) both}
+.project-detail-media{box-shadow:0 18px 60px rgba(0,0,0,.22);transition:border-color .35s,box-shadow .35s}
+.project-detail-media:hover{border-color:rgba(200,135,143,.65);box-shadow:0 22px 70px rgba(102,0,0,.2)}
+.project-detail-copy h2{animation:ver-title-in .55s both}
+.project-detail-copy li{animation:ver-rise .45s both}
+.project-detail-copy li:nth-child(2){animation-delay:.08s}.project-detail-copy li:nth-child(3){animation-delay:.16s}
+@keyframes ver-card-in{from{opacity:0;transform:translateY(24px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes ver-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ver-detail-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ver-title-in{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
+
+</style></head><body>
 <title>VER Studio</title>
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
@@ -125,7 +218,7 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
 .marquee{border-block:1px solid var(--line);background:var(--ink-2);overflow:hidden;padding-block:1.1rem;display:flex;flex-direction:column;gap:.9rem}
 .track{display:flex;width:max-content;animation:slide 40s linear infinite;will-change:transform}
 .track.rev{animation-direction:reverse;animation-duration:60s}
-.loop:hover .track,.loop:focus-within .track{animation-play-state:paused}
+.loop:hover .track,.loop:focus-within .track{animation-play-state:running}
 .grp{display:flex;align-items:center;gap:2.5rem;padding-right:2.5rem}
 .grp li{display:flex;align-items:center;gap:2.5rem;font:500 clamp(1.1rem,2.4vw,1.6rem)/1 var(--display);white-space:nowrap;color:var(--fg-dim)}
 .grp li::after{content:"";width:.5rem;height:.5rem;border:1.5px solid var(--wine-hi);border-radius:50%}
@@ -183,8 +276,8 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
 .loop{overflow-x:auto;scrollbar-width:thin}
 .loop.on{overflow:hidden}
 .loop .track{animation:none}
-.loop.on .track{animation:slide 70s linear infinite}
-.grid-t{display:flex;gap:1rem;padding-right:1rem}
+.loop.on .track{animation:slide 70s linear infinite;animation-play-state:running!important}
+.grid-t{display:flex;gap:1rem;padding-right:1rem;margin:0;list-style:none}
 .grid-t>li{flex:none;width:clamp(200px,20vw,290px)}
 .tile{position:relative;display:block;aspect-ratio:9/16;overflow:hidden;text-decoration:none;border:1px solid var(--line);background:var(--ink-2);transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .3s var(--ease),border-color .3s}
 .tile:hover{border-color:var(--wine-hi)}
@@ -195,10 +288,9 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
 .tile::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,transparent 55%,rgb(10 9 12 / .55) 72%,rgb(10 9 12 / .9));pointer-events:none}
 .cap{position:absolute;left:0;right:0;bottom:0;z-index:3;-webkit-transform:translateZ(0);transform:translateZ(0);display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;padding:1.25rem}
 .cap{text-shadow:0 1px 14px rgb(0 0 0 / .7)}
-.cap h3{font-size:1.15rem;font-weight:500}
-.cap small{display:block;color:var(--fg-dim);font-size:.82rem;margin-top:.15rem}
-.cap .go{flex:none;display:grid;place-items:center;width:2.5rem;height:2.5rem;border:1px solid var(--fg);transition:background .3s,border-color .3s,transform .4s var(--ease)}
-.tile:hover .go{background:var(--wine);border-color:var(--wine);transform:translateX(4px)}
+.cap h3{font-size:1.15rem;font-weight:600;margin:0;letter-spacing:.01em;text-wrap:balance}
+.cap small{display:none!important}
+.cap .go{display:none!important}
 .tag{position:absolute;top:1rem;left:1rem;z-index:2;padding:.3rem .6rem;border:1px solid var(--line);background:rgb(10 9 12 / .6);font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--fg-dim)}
 /* los proyectos corren en bucle horizontal; se frena al pasar el mouse o enfocar una pieza */
 /* arte de las piezas */
@@ -533,32 +625,57 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
 
   <div class="loop"><div class="track">
     <ul class="grid-t">
-      <li class="rv">
-        <a class="tile" href="#servicios" data-tab="0">
+      <li>
+        <a class="tile" href="#projectScreen" data-project="branding" aria-label="Ver descripción del proyecto de Branding">
           <video class="art vid" muted loop playsinline preload="none" poster="media/branding/branding.jpg?v=2" aria-hidden="true" tabindex="-1"><source src="media/branding/branding.mp4?v=2" type="video/mp4"></video>
-          <span class="cap"><span><h3>Branding · Identidad visual</h3><small>Logotipo, paleta y manual de marca</small></span><span class="go"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
+          <span class="cap"><span><h3>Branding · Identidad visual</h3></span></span>
         </a>
       </li>
-      <li class="rv" style="--d:.08s">
-        <a class="tile" href="#servicios" data-tab="2">
+      <li>
+        <a class="tile" href="#projectScreen" data-project="motion" aria-label="Ver descripción del proyecto de Motion graphics">
           <video class="art vid" muted loop playsinline preload="none" poster="media/motion/motion-graphics.jpg?v=2" aria-hidden="true" tabindex="-1"><source src="media/motion/motion-graphics.mp4?v=2" type="video/mp4"></video>
-          <span class="cap"><span><h3>Motion graphics · Video promocional</h3><small>Animación 2D y transiciones</small></span><span class="go"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
+          <span class="cap"><span><h3>Motion graphics · Video promocional</h3></span></span>
         </a>
       </li>
-      <li class="rv">
-        <a class="tile" href="#servicios" data-tab="1">
+      <li>
+        <a class="tile" href="#projectScreen" data-project="social" aria-label="Ver descripción del proyecto de Social media">
           <video class="art vid" muted loop playsinline preload="none" poster="media/social/social-media.jpg?v=2" aria-hidden="true" tabindex="-1"><source src="media/social/social-media.mp4?v=2" type="video/mp4"></video>
-          <span class="cap"><span><h3>Social media · Feed e historias</h3><small>Piezas y calendario de contenido</small></span><span class="go"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
+          <span class="cap"><span><h3>Social media · Feed e historias</h3></span></span>
         </a>
       </li>
-      <li class="rv" style="--d:.08s">
-        <a class="tile" href="#servicios" data-tab="4">
+      <li>
+        <a class="tile" href="#projectScreen" data-project="planos" aria-label="Ver descripción del proyecto de Planos técnicos">
           <video class="art vid" muted loop playsinline preload="none" poster="media/planos/planos-tecnicos.jpg?v=2" aria-hidden="true" tabindex="-1"><source src="media/planos/planos-tecnicos.mp4?v=2" type="video/mp4"></video>
-          <span class="cap"><span><h3>Planos técnicos · Documentación</h3><small>Cortes, vistas y detalles constructivos</small></span><span class="go"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
+          <span class="cap"><span><h3>Planos técnicos · Documentación</h3></span></span>
         </a>
       </li>
     </ul>
   </div></div>
+  <div class="all-projects-cta">
+    <button class="btn btn-solid" id="openAllProjects" type="button">Todos los proyectos <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+  </div>
+</section>
+
+<!-- Vista de todos los proyectos y ficha individual -->
+<section class="project-screen" id="projectScreen" hidden aria-modal="true" role="dialog" aria-label="Portafolio de proyectos">
+  <div class="project-screen-head" id="allProjectsHead">
+    <div><p class="eyebrow">Portafolio VER Studio</p><h2>Todos los proyectos.</h2></div>
+    <div class="project-screen-actions"><button class="btn" type="button" data-close-projects>Volver al sitio</button></div>
+  </div>
+  <div class="project-filters" id="projectFilters" role="group" aria-label="Filtrar proyectos por categoría"></div>
+  <div class="all-projects-grid" id="allProjectsGrid">
+    <button class="all-project-card" type="button" data-project="branding" data-cat="Branding"><img src="media/branding/branding.jpg?v=2" alt="Vista previa de un proyecto de identidad visual"><span><strong>Branding</strong><small>Identidad visual y sistema de marca</small></span></button>
+    <button class="all-project-card" type="button" data-project="motion" data-cat="Motion graphics"><img src="media/motion/motion-graphics.jpg?v=2" alt="Vista previa de un proyecto de motion graphics"><span><strong>Motion graphics</strong><small>Animación y video promocional</small></span></button>
+    <button class="all-project-card" type="button" data-project="social" data-cat="Social media"><img src="media/social/social-media.jpg?v=2" alt="Vista previa de piezas para redes sociales"><span><strong>Social media</strong><small>Feed, historias y comunicación digital</small></span></button>
+    <button class="all-project-card" type="button" data-project="planos" data-cat="Planos técnicos"><img src="media/planos/planos-tecnicos.jpg?v=2" alt="Vista previa de documentación técnica"><span><strong>Planos técnicos</strong><small>Documentación y representación técnica</small></span></button>
+  </div>
+  <div class="project-detail" id="projectDetail" hidden>
+    <div class="project-detail-top"><button class="btn" type="button" id="backToAllProjects">← Todos los proyectos</button><button class="btn" type="button" data-close-projects>Cerrar ×</button></div>
+    <div class="project-detail-layout">
+      <div class="project-detail-media-wrap"><div class="project-detail-media" id="projectStage"></div><p class="project-stage-caption" id="projectStageCaption"></p><div class="project-thumbs" id="projectThumbs" role="group" aria-label="Contenido del proyecto" hidden></div></div>
+      <div class="project-detail-copy"><p class="eyebrow" id="projectDetailCategory">Identidad visual</p><h2 id="projectDetailTitle">Branding</h2><p class="project-detail-sub" id="projectDetailSubtitle" hidden></p><p id="projectDetailDescription"></p><h3 id="projectDetailProcessTitle">Proceso de trabajo</h3><ul id="projectDetailProcess"></ul><div class="project-wide" id="projectWide" hidden><p class="project-wide-title" id="projectWideTitle"></p><div class="project-wide-stage" id="projectWideStage"></div></div><div class="project-detail-nav"><button class="btn btn-solid" type="button" id="nextProject">Ver siguiente proyecto →</button></div></div>
+    </div>
+  </div>
 </section>
 
 <!-- ======== NOSOTROS ======== -->
@@ -681,6 +798,107 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
 
 <a class="wa-fab" href="https://wa.link/73znx2" target="_blank" rel="noopener noreferrer" aria-label="Escribinos por WhatsApp"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg></a>
 
+<!-- ============================================================
+  PROYECTOS: acá se edita todo el contenido del portafolio.
+  Cada proyecto se escribe UNA sola vez y alimenta:
+   · la home (4 tarjetas al azar, mudas, usando "preview")
+   · "Todos los proyectos" (tarjeta con "cover" + filtro por "categories")
+   · la ficha del proyecto (descripción, proceso y todo "media" CON sonido)
+  Para sumar un proyecto, copiá un bloque { ... } y cambiá los datos.
+  "media" admite videos y fotos en el orden que quieras:
+     { type:'video', src:'media/xxx/video-1.mp4', poster:'media/xxx/video-1.jpg', title:'Texto opcional' }
+     { type:'image', src:'media/xxx/foto-1.jpg', title:'Texto opcional' }
+  Opcionales por proyecto:
+   · subtitle:'Texto' -> se muestra bajo el título en la ficha
+   · wide:{ src, poster, title } -> video horizontal 16:9 que va debajo del "Proceso de trabajo"
+============================================================ -->
+<script id="proyectos-data">
+window.VER_PROJECTS=[
+  {
+    id:'branding',
+    title:'Branding',
+    label:'Branding · Identidad visual',
+    category:'Identidad visual',
+    line:'Identidad visual y sistema de marca',
+    categories:['Branding'],
+    alt:'Vista previa de un proyecto de identidad visual',
+    cover:'media/branding/branding.jpg?v=2',
+    preview:'media/branding/branding.mp4?v=2',
+    description:'Desarrollo de una identidad visual pensada para darle personalidad a una marca y mantener una comunicación coherente en todos sus puntos de contacto.',
+    process:['Definición del concepto y la personalidad de marca.','Exploración de recursos gráficos, tipografía y paleta cromática.','Aplicación de la identidad en piezas visuales.'],
+    media:[
+      { type:'video', src:'media/branding/branding.mp4?v=2', poster:'media/branding/branding.jpg?v=2', title:'Video completo' }
+    ]
+  },
+  {
+    id:'motion',
+    title:'Motion graphics',
+    label:'Motion graphics · Video promocional',
+    category:'Animación y video promocional',
+    line:'Animación y video promocional',
+    categories:['Motion graphics'],
+    alt:'Vista previa de un proyecto de motion graphics',
+    cover:'media/motion/motion-graphics.jpg?v=2',
+    preview:'media/motion/motion-graphics.mp4?v=2',
+    description:'Una pieza audiovisual que combina movimiento, ritmo y recursos gráficos para comunicar una idea de forma dinámica y captar la atención.',
+    process:['Organización de la idea y la secuencia visual.','Diseño de elementos y composición de escenas.','Animación, transiciones y ajuste del ritmo audiovisual.'],
+    media:[
+      { type:'video', src:'media/motion/motion-graphics.mp4?v=2', poster:'media/motion/motion-graphics.jpg?v=2', title:'Video completo' }
+    ]
+  },
+  {
+    id:'reel3d',
+    title:'Reel Animado 3D',
+    subtitle:'Inspirado en Mauro Arredondo',
+    label:'Reel Animado 3D · Inspirado en Mauro Arredondo',
+    category:'Animación y video promocional',
+    line:'Inspirado en Mauro Arredondo',
+    categories:['Motion graphics'],
+    alt:'Vista previa del Reel Animado 3D',
+    cover:'media/motion/reel-animado-3d.jpg',
+    preview:'media/motion/reel-animado-3d-preview.mp4',
+    description:'Reel vertical animado que presenta tres aplicaciones para organizar el trabajo (Trello, monday.com y Notion), combinando tipografía en movimiento, interfaces animadas y transiciones dinámicas, con un estilo inspirado en Mauro Arredondo.',
+    process:['Selección del contenido y planteo visual del reel.','Diseño de las pantallas e interfaces de cada aplicación.','Animación de tipografía, elementos y transiciones, y ajuste del ritmo.'],
+    media:[
+      { type:'video', src:'media/motion/reel-animado-3d.mp4', poster:'media/motion/reel-animado-3d.jpg', title:'Reel completo' }
+    ],
+    wide:{ src:'media/motion/reel-animado-3d-16x9.mp4', poster:'media/motion/reel-animado-3d-16x9.jpg', title:'Así se hizo: el proceso de animación' }
+  },
+  {
+    id:'social',
+    title:'Social media',
+    label:'Social media · Feed e historias',
+    category:'Contenido para redes sociales',
+    line:'Feed, historias y comunicación digital',
+    categories:['Social media'],
+    alt:'Vista previa de piezas para redes sociales',
+    cover:'media/social/social-media.jpg?v=2',
+    preview:'media/social/social-media.mp4?v=2',
+    description:'Sistema de piezas gráficas para redes sociales, con una línea visual consistente y formatos pensados para comunicar de manera clara en entornos digitales.',
+    process:['Definición de la línea visual y los formatos.','Diseño de piezas para feed e historias.','Adaptación de los recursos para mantener coherencia entre publicaciones.'],
+    media:[
+      { type:'video', src:'media/social/social-media.mp4?v=2', poster:'media/social/social-media.jpg?v=2', title:'Video completo' }
+    ]
+  },
+  {
+    id:'planos',
+    title:'Planos técnicos',
+    label:'Planos técnicos · Documentación',
+    category:'Documentación y representación técnica',
+    line:'Documentación y representación técnica',
+    categories:['Planos técnicos'],
+    alt:'Vista previa de documentación técnica',
+    cover:'media/planos/planos-tecnicos.jpg?v=2',
+    preview:'media/planos/planos-tecnicos.mp4?v=2',
+    description:'Representación técnica orientada a organizar información espacial y constructiva mediante planos claros, jerarquías visuales y detalles de lectura precisa.',
+    process:['Revisión y organización de la información disponible.','Elaboración de vistas, cortes y detalles necesarios.','Jerarquización gráfica para facilitar la lectura de la documentación.'],
+    media:[
+      { type:'video', src:'media/planos/planos-tecnicos.mp4?v=2', poster:'media/planos/planos-tecnicos.jpg?v=2', title:'Video completo' }
+    ]
+  }
+];
+</script>
+
 <script>
 (function(){
   var d=document, root=d.documentElement;
@@ -709,6 +927,25 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
   if(d.fonts&&d.fonts.ready) d.fonts.ready.then(function(){
     $$('.marquee .grp').forEach(function(g){g.removeAttribute('data-filled')});
   });
+  /* datos de proyectos (se editan en <script id="proyectos-data">) */
+  var PROJECTS=window.VER_PROJECTS||[], byId={};
+  PROJECTS.forEach(function(p){byId[p.id]=p});
+  function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+
+  /* home: 4 tarjetas al azar en cada visita, siempre mudas */
+  (function(){
+    var ul=$('.loop .grid-t'); if(!ul||!PROJECTS.length) return;
+    var pool=PROJECTS.slice();
+    for(var i=pool.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=pool[i];pool[i]=pool[j];pool[j]=t}
+    ul.innerHTML=pool.slice(0,4).map(function(p){
+      var first=p.media&&p.media[0], pv=p.preview||(first&&first.type==='video'?first.src:'');
+      var art=pv
+        ?'<video class="art vid" muted loop playsinline preload="none" poster="'+esc(p.cover)+'" aria-hidden="true" tabindex="-1"><source src="'+esc(pv)+'" type="video/mp4"></video>'
+        :'<img class="art" src="'+esc(p.cover)+'" alt="" aria-hidden="true">';
+      return '<li><a class="tile" href="#projectScreen" data-project="'+esc(p.id)+'" aria-label="Ver proyecto: '+esc(p.title)+'">'+art+'<span class="cap"><span><h3>'+esc(p.label||p.title)+'</h3></span></span></a></li>';
+    }).join('');
+  })();
+
   var loop=$('.loop'), strip=$('.loop .grid-t');
   if(loop&&strip){
     var cl=strip.cloneNode(true);
@@ -778,9 +1015,158 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
       if(n!==null){e.preventDefault();sel(n,true)}
     });
   });
-  $$('.tile').forEach(function(t){
-    t.addEventListener('click',function(){ sel(parseInt(t.getAttribute('data-tab'),10)||0); });
+  /* portafolio: pantalla de todos los proyectos y fichas individuales */
+  var projectScreen=$('#projectScreen'), allProjectsHead=$('#allProjectsHead'), allProjectsGrid=$('#allProjectsGrid'), projectDetail=$('#projectDetail');
+  var stage=$('#projectStage'), stageCaption=$('#projectStageCaption'), thumbs=$('#projectThumbs');
+  var activeProject=PROJECTS.length?PROJECTS[0].id:'';
+
+  allProjectsGrid.innerHTML=PROJECTS.map(function(p){
+    var art=p.preview
+      ?'<video muted loop playsinline preload="none" poster="'+esc(p.cover)+'" aria-hidden="true" tabindex="-1"><source src="'+esc(p.preview)+'" type="video/mp4"></video>'
+      :'<img src="'+esc(p.cover)+'" alt="'+esc(p.alt||p.title)+'">';
+    return '<button class="all-project-card" type="button" data-project="'+esc(p.id)+'" data-cat="'+esc((p.categories||[]).join('|'))+'">'+art+'<span><strong>'+esc(p.title)+'</strong><small>'+esc(p.line||'')+'</small></span></button>';
+  }).join('');
+
+  /* tarjetas: con mouse el video se activa al pasar el cursor; en pantallas táctiles, mientras la tarjeta se ve.
+     Siempre en silencio. Para que se reproduzcan todas solas, cambiá HOVER_MODE a false. */
+  (function(){
+    var HOVER_MODE=true;
+    var vids=$$('video',allProjectsGrid); if(!vids.length) return;
+    vids.forEach(function(v){v.muted=true;v.defaultMuted=true});
+    var save=navigator.connection&&navigator.connection.saveData;
+    function go(v){var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){})}
+    function rest(v){v.pause(); try{v.currentTime=0}catch(e){}}
+    var mouse=window.matchMedia&&matchMedia('(hover:hover) and (pointer:fine)').matches;
+    if(HOVER_MODE&&mouse){
+      $$('.all-project-card',allProjectsGrid).forEach(function(card){
+        var v=$('video',card); if(!v) return;
+        card.addEventListener('pointerenter',function(){if(motionOK()) go(v)});
+        card.addEventListener('pointerleave',function(){rest(v)});
+        card.addEventListener('focus',function(){if(motionOK()) go(v)});
+        card.addEventListener('blur',function(){rest(v)});
+      });
+      return;
+    }
+    if(!('IntersectionObserver' in window)||save) return;
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        var v=e.target;
+        if(e.isIntersecting&&motionOK()) go(v); else v.pause();
+      });
+    },{threshold:.25});
+    vids.forEach(function(v){io.observe(v)});
+  })();
+
+  /* escenario: video CON sonido (controles propios, sin autoplay) o foto */
+  var wide=$('#projectWide'), wideStage=$('#projectWideStage'), wideTitle=$('#projectWideTitle');
+  function killVideos(box){
+    $$('video',box).forEach(function(v){v.pause();v.removeAttribute('src');v.load()});
+    box.innerHTML='';
+  }
+  function stopStage(){killVideos(stage)}
+  function stopAll(){killVideos(stage);killVideos(wideStage);wide.hidden=true}
+  function showWide(p){
+    killVideos(wideStage);
+    if(!p.wide){wide.hidden=true;return}
+    var v=document.createElement('video'); v.controls=true; v.muted=false; v.playsInline=true; v.preload='metadata';
+    if(p.wide.poster) v.poster=p.wide.poster;
+    v.src=p.wide.src; wideStage.appendChild(v);
+    wideTitle.textContent=p.wide.title||''; wideTitle.hidden=!p.wide.title; wide.hidden=false;
+  }
+  /* si uno de los videos de la ficha empieza a sonar, el otro se pausa */
+  projectScreen.addEventListener('play',function(e){
+    if(!e.target.closest||!e.target.closest('#projectStage,#projectWideStage')) return;
+    $$('#projectStage video,#projectWideStage video').forEach(function(v){if(v!==e.target)v.pause()});
+  },true);
+  function showMedia(i,autoplay){
+    var p=byId[activeProject]; if(!p) return;
+    var item=(p.media||[])[i]; stopStage();
+    if(!item){stageCaption.textContent='';return}
+    if(item.type==='image'){
+      var im=document.createElement('img'); im.src=item.src; im.alt=item.title||p.title; stage.appendChild(im);
+    }else{
+      var v=document.createElement('video'); v.controls=true; v.muted=false; v.playsInline=true; v.preload='metadata';
+      var po=item.poster||p.cover; if(po) v.poster=po;
+      v.src=item.src; stage.appendChild(v);
+      if(autoplay){var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){})}
+    }
+    stageCaption.textContent=item.title||'';
+    $$('.project-thumb',thumbs).forEach(function(b,k){b.setAttribute('aria-pressed',String(k===i))});
+  }
+  thumbs.addEventListener('click',function(e){
+    var b=e.target.closest('.project-thumb'); if(b) showMedia(parseInt(b.getAttribute('data-i'),10)||0,true);
   });
+
+  function showProjects(){
+    projectScreen.hidden=false; allProjectsHead.hidden=false; allProjectsGrid.hidden=false; projectDetail.hidden=true;
+    document.body.style.overflow='hidden';
+    stopAll();
+    $('#openAllProjects')?.blur();
+  }
+  function openProjectDetail(key){
+    var item=byId[key]; if(!item) return;
+    activeProject=key; projectScreen.hidden=false; allProjectsHead.hidden=true; allProjectsGrid.hidden=true; projectDetail.hidden=false;
+    $('#projectDetailCategory').textContent=item.category||''; $('#projectDetailTitle').textContent=item.title;
+    var sub=$('#projectDetailSubtitle'); sub.textContent=item.subtitle||''; sub.hidden=!item.subtitle;
+    $('#projectDetailDescription').textContent=item.description||'';
+    var list=$('#projectDetailProcess'); list.innerHTML=''; (item.process||[]).forEach(function(step){var li=document.createElement('li');li.textContent=step;list.appendChild(li)});
+    $('#projectDetailProcessTitle').hidden=!(item.process&&item.process.length);
+    var media=item.media||[];
+    thumbs.innerHTML=media.length>1?media.map(function(m,k){
+      var img=m.type==='image'?m.src:(m.poster||item.cover);
+      return '<button type="button" class="project-thumb" data-i="'+k+'" aria-pressed="false" aria-label="'+esc(m.title||('Elemento '+(k+1)))+'"><img src="'+esc(img)+'" alt=""><i class="'+(m.type==='video'?'is-video':'')+'"></i></button>';
+    }).join(''):'';
+    thumbs.hidden=media.length<2;
+    showMedia(0,false);
+    showWide(item);
+    projectScreen.scrollTop=0;
+    document.body.style.overflow='hidden';
+  }
+  function closeProjects(){projectScreen.hidden=true;document.body.style.overflow='';stopAll();}
+  /* Las tarjetas de la página principal abren directamente su ficha */
+  var mainProjects=$('.loop');
+  if(mainProjects){
+    mainProjects.addEventListener('click',function(e){
+      var card=e.target.closest('a.tile[data-project]');
+      if(!card)return;
+      e.preventDefault();
+      openProjectDetail(card.getAttribute('data-project'));
+    });
+    mainProjects.addEventListener('keydown',function(e){
+      if(e.key!=='Enter'&&e.key!==' ')return;
+      var card=e.target.closest('a.tile[data-project]');
+      if(card){e.preventDefault();openProjectDetail(card.getAttribute('data-project'));}
+    });
+  }
+  $('#openAllProjects').addEventListener('click',showProjects);
+  $$('[data-close-projects]').forEach(function(b){b.addEventListener('click',closeProjects)});
+  allProjectsGrid.addEventListener('click',function(e){var card=e.target.closest('[data-project]');if(card)openProjectDetail(card.getAttribute('data-project'))});
+  $('#backToAllProjects').addEventListener('click',function(){stopAll();allProjectsHead.hidden=false;allProjectsGrid.hidden=false;projectDetail.hidden=true});
+  $('#nextProject').addEventListener('click',function(){var i=PROJECTS.map(function(p){return p.id}).indexOf(activeProject);if(PROJECTS.length)openProjectDetail(PROJECTS[(i+1)%PROJECTS.length].id)});
+  projectScreen.addEventListener('keydown',function(e){if(e.key==='Escape')closeProjects()});
+
+  /* filtro por categorías: los botones se generan solos a partir de data-cat de cada tarjeta */
+  var filterBar=$('#projectFilters');
+  function applyFilter(cat){
+    $$('.all-project-card',allProjectsGrid).forEach(function(card){
+      var cats=(card.getAttribute('data-cat')||'').split('|');
+      card.hidden=!(cat==='Todos'||cats.indexOf(cat)>-1);
+    });
+    $$('.filter-chip',filterBar).forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-filter')===cat))});
+  }
+  (function buildFilters(){
+    var cats=['Todos'];
+    $$('.all-project-card',allProjectsGrid).forEach(function(card){
+      (card.getAttribute('data-cat')||'').split('|').forEach(function(c){if(c&&cats.indexOf(c)<0)cats.push(c)});
+    });
+    cats.forEach(function(c){
+      var b=document.createElement('button');
+      b.type='button';b.className='filter-chip';b.textContent=c;b.setAttribute('data-filter',c);
+      b.addEventListener('click',function(){applyFilter(c)});
+      filterBar.appendChild(b);
+    });
+    applyFilter('Todos');
+  })();
 
   /* preguntas */
   $$('.q').forEach(function(b){
@@ -1004,6 +1390,41 @@ h3{font-size:1.25rem;line-height:1.2;font-weight:500;letter-spacing:-.01em}
   function motionOK(){ return moving(); }
   function moving(){ return reduce?root.classList.contains('mo'):!root.classList.contains('paused'); }
   start();
+})();
+</script>
+
+
+<script>
+/* Detalles visuales VER: cursor tipo visor y animaciones de portafolio */
+(function(){
+  var fine=window.matchMedia&&window.matchMedia('(pointer:fine) and (hover:hover)').matches;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var screen=document.getElementById('projectScreen');
+  var grid=document.getElementById('allProjectsGrid');
+  var detail=document.getElementById('projectDetail');
+  if(fine){
+    var cursor=document.createElement('div');cursor.className='ver-cursor';cursor.setAttribute('aria-hidden','true');document.body.appendChild(cursor);
+    document.body.classList.add('ver-cursor-enabled');
+    var x=0,y=0,px=0,py=0,raf=0;
+    function paint(){px+=(x-px)*.34;py+=(y-py)*.34;cursor.style.left=px+'px';cursor.style.top=py+'px';if(Math.abs(x-px)>.3||Math.abs(y-py)>.3){raf=requestAnimationFrame(paint)}else raf=0}
+    window.addEventListener('pointermove',function(e){if(e.pointerType==='touch')return;x=e.clientX;y=e.clientY;cursor.classList.add('is-visible');if(!raf)raf=requestAnimationFrame(paint);var target=e.target.closest('a,button,.all-project-card,.tile,[role="button"]');cursor.classList.toggle('is-active',!!target);},{passive:true});
+    document.addEventListener('pointerleave',function(){cursor.classList.remove('is-visible','is-active')});
+    document.addEventListener('pointerover',function(e){if(e.target.closest('input,textarea,select,[contenteditable="true"]'))cursor.style.display='none';});
+    document.addEventListener('pointerout',function(e){if(e.target.closest('input,textarea,select,[contenteditable="true"]'))cursor.style.display='';});
+  }
+  function animateGallery(){
+    if(!screen||!grid||!detail||reduce)return;
+    screen.classList.remove('is-animating');void screen.offsetWidth;screen.classList.add('is-animating');
+    if(!grid.hidden){Array.prototype.forEach.call(grid.querySelectorAll('.all-project-card'),function(card,i){card.style.setProperty('--card-delay',(i*100)+'ms')})}
+    window.setTimeout(function(){if(screen)screen.classList.remove('is-animating')},1300);
+  }
+  var open=document.getElementById('openAllProjects');
+  var back=document.getElementById('backToAllProjects');
+  var next=document.getElementById('nextProject');
+  if(open)open.addEventListener('click',function(){window.setTimeout(animateGallery,30)});
+  if(back)back.addEventListener('click',function(){window.setTimeout(animateGallery,30)});
+  if(next)next.addEventListener('click',function(){window.setTimeout(function(){if(screen&&!screen.hidden&&!detail.hidden&&!reduce){screen.classList.remove('is-animating');void screen.offsetWidth;screen.classList.add('is-animating');window.setTimeout(function(){screen.classList.remove('is-animating')},800)}},30)});
+  if(screen&&grid){grid.addEventListener('click',function(e){if(e.target.closest('.all-project-card')&&!reduce){window.setTimeout(function(){screen.classList.remove('is-animating');void screen.offsetWidth;screen.classList.add('is-animating');window.setTimeout(function(){screen.classList.remove('is-animating')},800)},30)}})}
 })();
 </script>
 
