@@ -33,7 +33,7 @@ window.VER_CATEGORIAS=['Branding','Comunicación Visual','Diseño Digital','Moti
 
 /* Si reemplazás un archivo por otro con el MISMO nombre, subí este número en 1
    para que los visitantes vean el cambio y no la versión guardada en su navegador. */
-window.VER_VERSION='3';
+window.VER_VERSION='4';
 
 window.VER_PROJECTS=[
      {
