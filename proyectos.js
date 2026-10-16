@@ -36,6 +36,18 @@ window.VER_CATEGORIAS=['Branding','Comunicación Visual','Diseño Digital','Moti
 window.VER_VERSION='3';
 
 window.VER_PROJECTS=[
+     {
+    carpeta:'reel-motivacional-messi',
+    titulo:'Reel Motivacional Messi',
+    inspiracion:'Mauro Arredondo',
+    categorias:['Diseño Digital'],
+    descripcion:'Reel vertical de Leo Messi, jugador numero 10 de la Selección Argentina y el Numero 1 del Mundo. Corto motivacional e inspirador para cada Argentino.',
+    proceso:['Selección de contenido y planteo visual.', 'Diseño de pantallas e interfaces.', 'Animación de tipografías, elementos y transiciones del proyecto.'],
+    contenido:[
+      { archivo:'reel.mp4' }
+    ],
+    horizontal:{ archivo:'proceso-16x9.mp4', poster:'proceso-16x9.jpg', titulo:'Así se hizo' }
+  },
 
   {
     carpeta:'reel-animado-3d',
