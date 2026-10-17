@@ -120,6 +120,7 @@ window.VER_PROJECTS=[
       { archivo:'social-media.mp4', poster:'social-media.jpg', titulo:'Video completo' }
     ],
     horizontal:{ archivo:'proceso-16x9.mp4', poster:'proceso-16x9.jpg', titulo:'Así se hizo: el proceso' }
+       { archivo: 'foto-1.jpg', titulo: 'Imagen Estatica' }
   },
 
   {
