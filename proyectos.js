@@ -119,8 +119,7 @@ window.VER_PROJECTS=[
     contenido:[
       { archivo:'social-media.mp4', poster:'social-media.jpg', titulo:'Video completo' }
     ],
-    // Cuando tengas el video 16:9, agregá dentro de horizontal:  archivo:'proceso-16x9.mp4', poster:'proceso-16x9.jpg',
-    horizontal:{ titulo:'Así se hizo: el proceso' }
+    horizontal:{ archivo:'proceso-16x9.mp4', poster:'proceso-16x9.jpg', titulo:'Así se hizo: el proceso' }
   },
 
   {
