@@ -108,7 +108,7 @@ window.VER_PROJECTS=[
   },
 
   {
-    carpeta:'social',
+    carpeta:'flyer-3d-it',
     titulo:'Flyer Parallax 3d It ',
     inspiracion:'Mauro Arredondo',
     categorias:['Diseño Digital'],
