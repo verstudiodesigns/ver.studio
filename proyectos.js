@@ -101,7 +101,7 @@ window.VER_PROJECTS=[
     portada:'motion-graphics.jpg',
     vista:'motion-graphics.mp4',
     contenido:[
-      { archivo:'reel.mp4', poster:'cover', titulo:'Video completo' }
+      { archivo:'reel.mp4', poster:'cover.jpg', titulo:'Video completo' }
     ],
     horizontal:{ archivo:'proceso-16x9.mp4', poster:'proceso-16x9.jpg', titulo:'Así se hizo: el proceso' }
   },
