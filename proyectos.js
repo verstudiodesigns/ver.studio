@@ -98,8 +98,8 @@ window.VER_PROJECTS=[
     categorias:['Motion Graphics'],
     descripcion:'Una pieza audiovisual que combina movimiento, ritmo y recursos gráficos para comunicar una idea de forma dinámica y captar la atención.',
     proceso:['Organización de la idea y la secuencia visual.','Diseño de elementos y composición de escenas.','Animación, transiciones y ajuste del ritmo audiovisual.'],
-    portada:'motion-graphics.jpg',
-    vista:'motion-graphics.mp4',
+    portada:'cover.jpg',
+    vista:'preview.mp4',
     contenido:[
       { archivo:'reel.mp4', poster:'cover.jpg', titulo:'Video completo' }
     ],
