@@ -44,7 +44,7 @@ window.VER_PROJECTS=[
     descripcion:'Artemis de la Nasa tuvo como objetivo llevar a la primera mujer y a la próxima persona de color a la Luna. Misión histórica que establece la presencia humana sostenible en el satélite natural como base para futuras misiones tripuladas a Marte.',
     proceso:['Conceptualización y bocetaje', 'Desarrollo de Activos y Rigging de elementos, vectores y texturas.', 'Animación y renderizado en alta calidad.'],
     contenido:[
-      { archivo:'reel.mp4' },
+      { archivo:'reel.mp4', titulo:'Reel completo' }
     ],
     horizontal:{ archivo:'proceso-16x9.mp4', poster:'proceso-16x9.jpg', titulo:'Así se hizo' }
   },
@@ -57,7 +57,7 @@ window.VER_PROJECTS=[
     descripcion:'Reel vertical de Leo Messi, jugador numero 10 de la Selección Argentina y el Numero 1 del Mundo. Corto motivacional e inspirador para cada Argentino.',
     proceso:['Selección de contenido y planteo visual.', 'Diseño de pantallas e interfaces.', 'Animación de tipografías, elementos y transiciones del proyecto.'],
     contenido:[
-      { archivo:'reel.mp4' }
+      { archivo:'reel.mp4', titulo:'Reel completo' }
     ],
     horizontal:{ archivo:'proceso-16x9.mp4', poster:'proceso-16x9.jpg', titulo:'Así se hizo' }
   },
