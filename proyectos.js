@@ -92,19 +92,18 @@ window.VER_PROJECTS=[
   },
 
   {
-    carpeta:'motion',
-    titulo:'Motion Graphics',
-    inspiracion:'Nombre del referente',
+    carpeta:'skill',
+    titulo:'Motion Skill',
+    inspiracion:'Mauro Arredondo',
     categorias:['Motion Graphics'],
     descripcion:'Una pieza audiovisual que combina movimiento, ritmo y recursos gráficos para comunicar una idea de forma dinámica y captar la atención.',
     proceso:['Organización de la idea y la secuencia visual.','Diseño de elementos y composición de escenas.','Animación, transiciones y ajuste del ritmo audiovisual.'],
     portada:'motion-graphics.jpg',
     vista:'motion-graphics.mp4',
     contenido:[
-      { archivo:'motion-graphics.mp4', poster:'motion-graphics.jpg', titulo:'Video completo' }
+      { archivo:'reel.mp4', poster:'cover', titulo:'Video completo' }
     ],
-    // Cuando tengas el video 16:9, agregá dentro de horizontal:  archivo:'proceso-16x9.mp4', poster:'proceso-16x9.jpg',
-    horizontal:{ titulo:'Así se hizo: el proceso' }
+    horizontal:{ archivo:'proceso-16x9.mp4', poster:'proceso-16x9.jpg', titulo:'Así se hizo: el proceso' }
   },
 
   {
